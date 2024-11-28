@@ -1,11 +1,11 @@
-
+import RouteComponent from "./routes/RouteComponent.jsx"
 import './App.scss'
 
 function App() {
 
   return (
    <div className="App">
-    Home Page
+    <RouteComponent />
    </div>
   )
 }
