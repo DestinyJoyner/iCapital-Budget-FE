@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuthProvider } from "../providers/AuthProvider.jsx";
+import Loading from "../components/loading/Loading.jsx"
 import {logOutUser} from "../utils/authFunctions.js"
 
 export default function ProtectedRoute({ element: Component }) {
@@ -53,9 +54,9 @@ export default function ProtectedRoute({ element: Component }) {
     Without replace: User clicks back button → Returns to protected route → Redirects again
     With replace: User clicks back button → Goes to previous page before the redirect
   */
- 
+
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Loading />;
   }
   return validCredentials ? <Component /> : <Navigate to="/login" replace />;
 }
