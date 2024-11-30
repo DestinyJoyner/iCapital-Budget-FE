@@ -26,17 +26,16 @@ export default function AuthProvider({ children }) {
       axios.defaults.headers.common[
         "authorization"
       ] = `Bearer ${userAuth.authToken}`;
-
-
+      setUserAuth({...userAuth, authToken : authToken})
     } else {
       delete axios.defaults.headers.common["authorization"];
     }
   }, []);
-  useEffect(() => {
-    if (userAuth.authToken) {
-        axios.defaults.headers.common["authorization"] = `Bearer ${userAuth.authToken}`;
-    }
-}, [userAuth.authToken]);
+//   useEffect(() => {
+//     if (userAuth.authToken) {
+//         axios.defaults.headers.common["authorization"] = `Bearer ${userAuth.authToken}`;
+//     }
+// }, [userAuth.authToken]);
 
   return (
     <AuthData.Provider
