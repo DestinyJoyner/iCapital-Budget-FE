@@ -1,13 +1,44 @@
 import {useEffect, useState} from "react"
+import { useParams, useNavigate } from "react-router-dom";
 import {useAuthProvider} from "../providers/AuthProvider.jsx"
 
 export default function Verification () {
-    const {API} = useAuthProvider()
-    console.log(API)
+    const {API, userAuth, axios, setUserAuth} = useAuthProvider()
+    const {verificationToken} = useParams()
+    const navigate = useNavigate()
+    
+    useEffect(() => {
+        if(verificationToken){
+            // console.log("userobj", userAuth)
+            // if verification code is in url, sen req to auth/verification, if valid, response will hold auth token => setAuthToken
+            axios.post(`${API}/auth/verification`, {
+                email:localStorage.getItem("icapital_user_email"),
+                verification_token: verificationToken
+            }).then(({data}) => {
+                console.log("verifyRes", data)
+               
+                if(data.is_verified){
+                    localStorage.setItem("token", data.token)
+                    setUserAuth({
+                        ...userAuth,
+                        authToken : data.token,
+                        user_id: data.user.id,
+                        is_verified: data.is_verified
+                    })
+                    navigate("/")
+                }
+            }).catch((err) => console.log(err))
+        }
+
+    },[])
+    
 
     return (
         <div className= "verification">
-            <h1>verification</h1>
+            {
+                !verificationToken ?  <h1>Check Email</h1> : <h2>Loading until verified</h2>
+            }
+          
         </div>
     )
 }

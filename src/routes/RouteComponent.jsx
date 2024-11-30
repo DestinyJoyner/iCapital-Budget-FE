@@ -11,12 +11,16 @@ export default function RouteComponent() {
       <Route path="/">
         <Route index element={<Home />} />
         <Route path="register" element={<Registration />} />
+           {/* VERIFICATION ROUTE */}
+    <Route path="verification">
+    <Route index element={<Verification />} />
+    <Route path= ":verificationToken" element={<Verification />} />
+      </Route> 
         <Route path="login" element={<Login />} />
       </Route>
 
 
-        {/* VERIFICATION ROUTE */}
-    <Route path="/verification" element={<Verification />} />
+     
       {/* ERROR ROUTES */}
       <Route path="/not-found" element={<Error />} />
       <Route path="*" element={<Navigate to="/not-found" />} />

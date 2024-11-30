@@ -1,9 +1,14 @@
 import {useState} from "react"
+import { useNavigate} from "react-router-dom";
 import {useAuthProvider} from "../../providers/AuthProvider.jsx"
 import "./RegistrationForm.scss"
 
 export default function RegistrationForm () {
-const {API, axios} = useAuthProvider()
+const {API, axios, setVerificationToken,
+    userAuth,
+    setUserAuth} = useAuthProvider()
+
+    const navigate = useNavigate()
 
     const [registerForm, setRegisterForm] = useState({
         first_name:"",
@@ -23,10 +28,22 @@ const {API, axios} = useAuthProvider()
         axios.post(`${API}/auth/register`, {
             login: registerForm
         }).then(({data}) =>{
-            console.log("register response", data)
+            const {email, first_name, id, is_verified } = data
+
+            // setVerificationToken(verification_token)
+            setUserAuth({
+                ...userAuth,
+                email,
+                first_name,
+                id,
+                is_verified
+            })
+            localStorage.setItem("icapital_user_email", email)
+            navigate("/verification")
             /* 
-            response includes : {email, first_name, id, verification_token, is_verified}
+            response includes {email: 'destinytestdev@gmail.com', first_name: 'Destiny', id: 4, verification_token: '712afc709ab67db9f74113435840343243422742e20893131d59f537ff734aa8', is_verified: false, …}
             */
+           
         }).catch((err) => console.log(err))
     }
 
