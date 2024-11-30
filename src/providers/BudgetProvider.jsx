@@ -27,5 +27,12 @@ export default function BudgetProvider({ children }) {
     }
   }, [userAuth.authToken]);
 
-  return <BudgetData.Provider value={{}}>{children}</BudgetData.Provider>;
+  return (
+  <BudgetData.Provider value={{
+    userTransactions, setUserTransactions,
+    userBudgetSummary, setUserBudgetSummary
+
+  }}>
+    {children}
+    </BudgetData.Provider>);
 }
