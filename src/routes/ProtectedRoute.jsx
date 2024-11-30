@@ -58,5 +58,5 @@ export default function ProtectedRoute({ element: Component }) {
   if (loading) {
     return <Loading />;
   }
-  return validCredentials ? <Component /> : <Navigate to="/login" replace />;
+  return validCredentials ? <Component /> : <Navigate to="/auth" replace />;
 }
