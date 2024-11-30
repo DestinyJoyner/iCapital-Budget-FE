@@ -4,6 +4,7 @@ import Auth from "../pages/Auth.jsx"
 import Error from "../pages/Error.jsx";
 import Verification from "../pages/Verification.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx"
+import Dashboard from "../pages/Dashboard.jsx"
 
 export default function RouteComponent() {
   return (
@@ -19,6 +20,8 @@ export default function RouteComponent() {
           <Route index element={<Verification />} />
           <Route path=":verificationToken" element={<Verification />} />
         </Route>
+
+        <Route path = "dashboard" element ={<ProtectedRoute element ={Dashboard} />} />
        
 
         <Route path = "test" element ={<ProtectedRoute element ={Home} />} />

@@ -1,11 +1,13 @@
 import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import { useAuthProvider } from "../../providers/AuthProvider.jsx";
 import { handleFormTextInput } from "../../utils/authFormFunctions.js";
+import {logOutUser} from "../../utils/authFunctions.js"
 import "./LoginForm.scss";
 
 export default function LoginForm() {
   const { API, axios, setUserAuth, userAuth } = useAuthProvider();
-
+    const navigate = useNavigate()
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -33,8 +35,12 @@ export default function LoginForm() {
         localStorage.setItem("token", token);
 
         // HERE NAVIGATE TO PROTECTED ROUTE (USER DASHBOARD) TO THEN MAKE CALL WITH TOKEN TO GET USER BUDGET INFO
+        navigate("/dashboard")
+
       })
       .catch((err) => {
+        // log out for testing only will implement route availabilty once logged in
+        logOutUser()
         // in case of login credentials error trigger error state and display to user
         if (err.response) {
           setLoginError(

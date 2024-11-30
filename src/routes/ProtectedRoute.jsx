@@ -28,6 +28,7 @@ export default function ProtectedRoute({ element: Component }) {
           await axios
             .get(`${API}/auth/token`)
             .then(({ data }) => {
+                console.log("protected verification happening")
                 if(!data || data !== email){
                     setValidCredentials(false)
                     logOutUser(setUserAuth)
