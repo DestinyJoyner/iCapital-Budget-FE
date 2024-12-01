@@ -27,7 +27,7 @@ export default function AccountDashboard() {
 
             {/* Transactions */}
             <section className="dashboard_addTransaction">
-                <AddTransaction />
+                <AddTransaction setUserTransactions={setUserTransactions} setUserBudgetSummary={setUserBudgetSummary} />
             </section>
 
             <section className="dashboard_transactions">
