@@ -16,6 +16,7 @@ export default function ProtectedRoute({ element: Component }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    
     async function verifyAuthToken() {
       if (!authToken || !email) {
         setValidCredentials(false);
@@ -26,7 +27,11 @@ export default function ProtectedRoute({ element: Component }) {
       } else {
         try {
           await axios
-            .get(`${API}/auth/token`)
+            .get(`${API}/auth/token`,{
+                headers: {
+                    'Authorization': `Bearer ${authToken}`
+                }
+            })
             .then(({ data }) => {
                 console.log("protected verification happening")
                 if(!data || data !== email){

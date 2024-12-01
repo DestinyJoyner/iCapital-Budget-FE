@@ -1,5 +1,10 @@
-import AccountDashboard from "../components/dashboard/AccountDashboard.jsx"
+import BudgetProvider  from "../providers/BudgetProvider.jsx";
+import AccountDashboard from "../components/dashboard/AccountDashboard.jsx";
 
-export default function Dashboard () {
-    return <AccountDashboard />
+export default function Dashboard() {
+  return (
+    <BudgetProvider>
+      <AccountDashboard />
+    </BudgetProvider>
+  );
 }

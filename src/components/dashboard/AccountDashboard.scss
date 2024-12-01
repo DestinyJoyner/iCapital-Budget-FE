@@ -1,0 +1,33 @@
+.dashboard {
+
+
+
+
+
+    &_transactions {
+        width: 45%;
+        &_transaction {
+            display:grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items:center;
+
+            &_details {
+                row-gap: .4vh;
+                & >* {
+                    align-self:flex-start;
+                }
+                &_category {
+                    
+                    font-size: 22px;
+                    font-weight:600;
+                    color: rgba(0, 0, 0, 0.87);
+                }
+                &_date {
+                    
+                    color: rgba(0, 0, 0, 0.6);
+                    
+                }
+            }
+        }
+    }
+}

@@ -40,7 +40,7 @@ export default function LoginForm() {
       })
       .catch((err) => {
         // log out for testing only will implement route availabilty once logged in
-        logOutUser()
+        logOutUser(setUserAuth)
         // in case of login credentials error trigger error state and display to user
         if (err.response) {
           setLoginError(
