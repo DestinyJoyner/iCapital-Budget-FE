@@ -16,13 +16,14 @@ export default function AccountDashboard() {
         <div className="dashboard">
             <section className="dashboard_header">
                 <div className="dashboard_header_left">
-        <h2>Welcome, {userAuth.first_name}!</h2>
-                </div>
-                <div className="dashboard_header_right">
+                    <h2 className="header-font">Welcome, {userAuth.first_name}!</h2>
+                    <div className="dashboard_header_left_summary subtext-font">
                     <li>Disposable Income: ${disposable_income || 0}</li>
                    <li>Total Income: ${total_income || 0}</li>
                    <li>Total Expenses: ${total_expenses || 0}</li>
                 </div>
+                </div>
+               
             </section>
 
             {/* Transactions */}

@@ -1,5 +1,36 @@
 .dashboard {
 
+    &_header {
+        background-image:url("../../assets/icapital-budget-dashboard.jpg");
+        background-repeat: no-repeat;
+        background-position:center;
+        height: 22vh;
+        background-size: 100% auto;
+        color: white;
+
+        &_left {
+            padding: 1vh 0;
+            margin-left: 5vw;
+            max-width: 50%;
+            display: grid;
+            grid-template-rows: 35% 65%;
+            row-gap: 1.5vh;
+            align-items:center;
+
+            & h2 {
+                // margin-left: 5vw;
+            }
+
+            &_summary {
+                font-size: 18px;
+                
+                list-style:none;
+                 & li {
+                    margin-bottom: .6vh;
+                 }
+            }
+        }
+    }
 
 
 
