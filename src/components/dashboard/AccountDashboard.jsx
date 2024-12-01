@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react"
 import {useBudgetProvider} from "../../providers/BudgetProvider.jsx"
 import {useAuthProvider} from "../../providers/AuthProvider.jsx"
+import AddTransaction from "../transactions/AddTransaction.jsx"
 import { v4 as uuidv4 } from 'uuid';
 import { MdAttachMoney } from "react-icons/md";
 import "./AccountDashboard.scss"
@@ -22,6 +23,11 @@ export default function AccountDashboard() {
                    <li>Total Income: ${total_income || 0}</li>
                    <li>Total Expenses: ${total_expenses || 0}</li>
                 </div>
+            </section>
+
+            {/* Transactions */}
+            <section className="dashboard_addTransaction">
+                <AddTransaction setUserTransactions={setUserTransactions} setUserBudgetSummary={setUserBudgetSummary} />
             </section>
 
             <section className="dashboard_transactions">
