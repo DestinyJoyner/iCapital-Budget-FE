@@ -52,9 +52,10 @@ export default function LoginForm() {
   }
 
   return (
-    <form className="loginForm" onSubmit={(event) => handleLoginSubmit(event)}>
+    <form className="loginForm app-card flex-column" onSubmit={(event) => handleLoginSubmit(event)}>
+        <h2>Login</h2>
       <label>
-        <span>Email</span>
+        
         <input
           value={loginForm["email"]}
           id={"email"}
@@ -63,10 +64,11 @@ export default function LoginForm() {
             handleFormTextInput(event, loginForm, setLoginForm)
           }
         />
+        <span>Email</span>
       </label>
 
       <label>
-        <span>Password</span>
+        
         <input
           type="password"
           value={loginForm["password"]}
@@ -75,6 +77,7 @@ export default function LoginForm() {
             handleFormTextInput(event, loginForm, setLoginForm)
           }
         />
+        <span>Password</span>
       </label>
 
       <input type="submit" value="Login" />

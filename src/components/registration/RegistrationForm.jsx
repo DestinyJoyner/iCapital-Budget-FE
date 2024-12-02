@@ -48,41 +48,46 @@ const {API, axios, setVerificationToken,
     }
 
      return(
-        <form className="registration_form"
+        <form className="registration_form app-card flex-column"
         onSubmit={(event) => handleRegisterSubmit(event)}>
+            <h2>Register</h2>
             <label>
-                <span>First Name</span>
+                
                 <input 
                 type="text"
                 value={registerForm["first_name"]}
                 id= "first_name"
                 onChange={(event) => handleFormInput(event)} />
+                <span>First Name</span>
             </label>
             <label>
-                <span>Email</span>
+                
                 <input 
                 type="text"
                 value={registerForm["email"]}
                 id= "email"
                 onChange={(event) => handleFormInput(event)} />
+                <span>Email</span>
             </label>
 
             <label>
-                <span>Password</span>
+                
                 <input 
                 type="password"
                 value={registerForm["password"]}
                 id= "password"
                 onChange={(event) => handleFormInput(event)}  />
+                <span>Password</span>
             </label>
 
             <label>
-                <span>Confirm Password</span>
+                
                 <input 
                 type="password" 
                 value={registerForm["confirm_password"]}
                 id= "confirm_password"
                 onChange={(event) => handleFormInput(event)}/>
+                <span>Confirm Password</span>
             </label>
 
             <input type="submit" value="Register" />

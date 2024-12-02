@@ -42,3 +42,17 @@
     background-color: white;
     border-radius: 10px;
 }
+
+// submit buttons
+input[type="submit"] {
+    background-color: #3b99fc;
+    color: white;
+    font-family: "Open Sans";
+    width: fit-content;
+    border-radius: 10px;
+    padding: 5px 10px;
+    &:hover {
+      cursor: pointer;
+      background-color: #4caf50;
+    }
+  }

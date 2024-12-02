@@ -14,18 +14,8 @@
     row-gap: 2.2vh;
 
     & input[type="submit"] {
-      background-color: #3b99fc;
       height: 45px;
-      color: white;
       font-size: 22px;
-      font-family: "Open Sans";
-      width: fit-content;
-      border-radius: 10px;
-      padding: 5px 10px;
-      &:hover {
-        cursor: pointer;
-        background-color: #4caf50;
-      }
     }
 
     & label {
