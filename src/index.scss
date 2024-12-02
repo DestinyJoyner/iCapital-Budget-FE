@@ -2,6 +2,7 @@
 
 *{
     margin:0;
+    --icapital-blue:#0077aa;
     
 }
 .App {
@@ -45,7 +46,7 @@
 
 // submit buttons
 input[type="submit"] {
-    background-color: #3b99fc;
+    background-color: var(--icapital-blue);
     color: white;
     font-family: "Open Sans";
     width: fit-content;
