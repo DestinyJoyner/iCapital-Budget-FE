@@ -1,0 +1,67 @@
+.transaction {
+  height: 50vh;
+  width: 50vh;
+  row-gap: 2vh;
+  padding: 1vw;
+
+  & h2,
+  &_form {
+    margin-left: 2vw;
+  }
+
+  &_form {
+    display: grid;
+    row-gap: 2.2vh;
+
+    & input[type="submit"] {
+      background-color: #3b99fc;
+      height: 45px;
+      color: white;
+      font-size: 22px;
+      font-family: "Open Sans";
+      width: fit-content;
+      border-radius: 10px;
+      padding: 5px 10px;
+      &:hover {
+        cursor: pointer;
+        background-color: #4caf50;
+      }
+    }
+
+    & label {
+      & span {
+        font-family: "Open Sans";
+      }
+    }
+
+    &_label {
+      row-gap: 0.5vh;
+
+      & input,
+      & select {
+        width: 55%;
+        height: 25px;
+        border-radius: 10px;
+        text-align: center;
+      }
+    }
+
+    &_radioButtons {
+      display: flex;
+      width: 100%;
+      column-gap: 5vw;
+
+      & label {
+        display: flex;
+        column-gap: 1vw;
+        & input {
+          height: 20px;
+          width: 20px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
