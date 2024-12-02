@@ -1,22 +1,26 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useAuthProvider } from "../../providers/AuthProvider.jsx";
+import Loading from "../loading/Loading.jsx";
 import { handleFormTextInput } from "../../utils/authFormFunctions.js";
-import {logOutUser} from "../../utils/authFunctions.js"
+import { logOutUser } from "../../utils/authFunctions.js";
 import "./LoginForm.scss";
 
 export default function LoginForm() {
   const { API, axios, setUserAuth, userAuth } = useAuthProvider();
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
   const [loginError, setLoginError] = useState(null);
-  // handleFormTextInput(e, stateVariable, setFunction)
+  const [loading, setLoading] = useState(false);
 
   function handleLoginSubmit(e) {
     e.preventDefault();
+    // loading state
+    setLoading(true);
+
     axios
       .post(`${API}/auth/login`, {
         login: loginForm,
@@ -34,13 +38,16 @@ export default function LoginForm() {
         localStorage.setItem("icapital_user_email", loginForm["email"]);
         localStorage.setItem("token", token);
 
-        // HERE NAVIGATE TO PROTECTED ROUTE (USER DASHBOARD) TO THEN MAKE CALL WITH TOKEN TO GET USER BUDGET INFO
-        navigate("/dashboard")
-
+        //   timeout for loading while fetching b4 navigate
+        setTimeout(() => {
+          // HERE NAVIGATE TO PROTECTED ROUTE (USER DASHBOARD) TO THEN MAKE CALL WITH TOKEN TO GET USER BUDGET INFO
+          navigate("/dashboard");
+          setLoading(false);
+        }, 500);
       })
       .catch((err) => {
         // log out for testing only will implement route availabilty once logged in
-        logOutUser(setUserAuth)
+        logOutUser(setUserAuth);
         // in case of login credentials error trigger error state and display to user
         if (err.response) {
           setLoginError(
@@ -48,14 +55,17 @@ export default function LoginForm() {
           );
         }
         console.log(err);
+        setLoading(false);
       });
   }
 
   return (
-    <form className="loginForm app-card flex-column" onSubmit={(event) => handleLoginSubmit(event)}>
-        <h2>Login</h2>
+    <form
+      className="loginForm app-card flex-column"
+      onSubmit={(event) => handleLoginSubmit(event)}
+    >
+      <h2>Login</h2>
       <label>
-        
         <input
           value={loginForm["email"]}
           id={"email"}
@@ -68,7 +78,6 @@ export default function LoginForm() {
       </label>
 
       <label>
-        
         <input
           type="password"
           value={loginForm["password"]}
@@ -76,12 +85,14 @@ export default function LoginForm() {
           onChange={(event) =>
             handleFormTextInput(event, loginForm, setLoginForm)
           }
+          disabled={loading}
         />
         <span>Password</span>
       </label>
 
       <input type="submit" value="Login" />
 
+      {loading && <Loading />}
       {loginError && <span className="loginForm_error">{loginError}</span>}
     </form>
   );

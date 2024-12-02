@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthProvider } from "../../providers/AuthProvider.jsx";
+import Loading from "../loading/Loading.jsx"
 import { transactionCategories } from "../../utils/transactionCategories.js";
 import { handleFormTextInput } from "../../utils/authFormFunctions.js";
 import { v4 as uuidv4 } from "uuid";
@@ -21,6 +22,9 @@ export default function AddTransaction({
     transaction_date: todaysDate,
   });
   const [categories, setCategories] = useState(expense);
+  const [loading, setLoading] = useState(false)
+//   addTransaction error state
+const [transactionMessage, setTransactionMessage] = useState(null)
 
   // handle radio button transaction type
   function handleRadioButtons(e) {
@@ -39,6 +43,8 @@ export default function AddTransaction({
   //  handle addTransaction Submit
   function handleAddTransaction(e) {
     e.preventDefault();
+    setLoading(true)
+    setTransactionMessage(null)
     const authToken = localStorage.getItem("token");
     // axios.post(url, data, config)
     axios
@@ -51,8 +57,30 @@ export default function AddTransaction({
         setUserTransactions(data["updated_transactions"]);
         setUserBudgetSummary(data["budget_summary"]);
         setUserCategoryExpenses(data["category_totals"]);
+
+        // clear form since on same page
+        setTransactionForm({
+            amount: "",
+            category: "",
+            description: "",
+            transaction_type: "",
+            transaction_date: todaysDate,
+        })
+        
+
+        // loading stage for updating transactions
+        setTimeout(() => {
+            setLoading(false);
+            setTransactionMessage("Transaction added!")
+        }, 500); 
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if(err.response){
+            setTransactionMessage(err.response.data.errors[0].msg||"Failed to add transaction.")
+        }
+        console.log(err)
+        setLoading(false)
+    });
   }
 
   return (
@@ -91,6 +119,7 @@ export default function AddTransaction({
                 value="expense"
                 checked={transactionForm["transaction_type"] === "expense"}
                 onChange={(event) => handleRadioButtons(event)}
+                required
               />
               <span>Expense</span>
             </label>
@@ -115,6 +144,7 @@ export default function AddTransaction({
             id="category"
             value={transactionForm["category"]}
             onChange={(event) => handleDropdown(event)}
+            // required
           >
             <option value="">Select Category</option>
             {categories.map(({ id, category_name }) => (
@@ -140,6 +170,7 @@ export default function AddTransaction({
 
         <input type="submit" value="Add Transaction" />
       </form>
+      {transactionMessage && <span>{transactionMessage}</span>}
     </div>
   );
 }

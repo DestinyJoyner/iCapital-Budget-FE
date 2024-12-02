@@ -4,6 +4,7 @@ import { useAuthProvider } from "../../providers/AuthProvider.jsx";
 import { useCategoryProvider } from "../../providers/CategoryProvider.jsx";
 import AddTransaction from "../transactions/AddTransaction.jsx";
 import LineGraph from "../graph/LineGraph.jsx";
+import LogOutButton from "../logout/LogOutButton.jsx"
 import { v4 as uuidv4 } from "uuid";
 import { categoryIcons } from "../../utils/categoryIcons.js";
 import "./AccountDashboard.scss";
@@ -20,11 +21,17 @@ export default function AccountDashboard() {
   const { categoryObj } = useCategoryProvider();
 
   const { disposable_income, total_expenses, total_income } = userBudgetSummary;
+
+  useEffect(() => {},[userBudgetSummary])
   return (
     <div className="dashboard">
       <section className="dashboard_header">
         <div className="dashboard_header_left">
+
           <h2 className="header-font">Welcome, {userAuth.first_name}!</h2>
+          <span className = "dashboard_header_buttons">
+            <LogOutButton />
+          </span>
           <div className="dashboard_header_left_summary subtext-font">
             <li>Disposable Income: ${disposable_income || 0}</li>
             <li>Total Income: ${total_income || 0}</li>
