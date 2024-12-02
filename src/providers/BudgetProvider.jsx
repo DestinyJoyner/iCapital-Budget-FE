@@ -17,8 +17,13 @@ export default function BudgetProvider({ children }) {
   const [userCategoryExpenses, setUserCategoryExpenses] = useState({});
 
   useEffect(() => {
+    // check token
+    // console.log("Auth Token:", userAuth.authToken);
+    // console.log("Headers:", axios.defaults.headers.common["authorization"]);
+
     // depends on token value change to retrieve user budget
-    if (userAuth.authToken && axios.defaults.headers.common["authorization"]) {
+    if (userAuth.authToken) {
+        //if needed again??/dependency array also && axios.defaults.headers.common["authorization"]
       axios
         .get(`${API}/auth/budget`)
         .then(({ data }) => {
@@ -31,7 +36,9 @@ export default function BudgetProvider({ children }) {
         })
         .catch((err) => console.log("buget provider error", err));
     }
-  }, [userAuth.authToken, axios.defaults.headers.common["authorization"]]);
+  }, [userAuth.authToken]);
+
+
 
   return (
     <BudgetData.Provider
