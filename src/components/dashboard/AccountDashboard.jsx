@@ -22,7 +22,6 @@ export default function AccountDashboard() {
 
   const { disposable_income, total_expenses, total_income } = userBudgetSummary;
 
-  useEffect(() => {},[userBudgetSummary])
   return (
     <div className="dashboard">
       <section className="dashboard_header">

@@ -29,21 +29,23 @@ export default function LoginForm() {
         // remove prev error if any
         setLoginError(null);
         const { token, user_id } = data;
+
+        localStorage.setItem("icapital_user_email", loginForm["email"]);
+        localStorage.setItem("token", token);
+
         setUserAuth({
           ...userAuth,
           user_id,
           authToken: token,
           email: loginForm["email"],
         });
-        localStorage.setItem("icapital_user_email", loginForm["email"]);
-        localStorage.setItem("token", token);
 
         //   timeout for loading while fetching b4 navigate
         setTimeout(() => {
           // HERE NAVIGATE TO PROTECTED ROUTE (USER DASHBOARD) TO THEN MAKE CALL WITH TOKEN TO GET USER BUDGET INFO
           navigate("/dashboard");
           setLoading(false);
-        }, 500);
+        }, 1000);
       })
       .catch((err) => {
         // log out for testing only will implement route availabilty once logged in

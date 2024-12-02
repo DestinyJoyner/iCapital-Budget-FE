@@ -31,6 +31,17 @@ export default function AuthProvider({ children }) {
       delete axios.defaults.headers.common["authorization"];
     }
   }, []);
+
+//   headers undefined test fix
+  useEffect(() => {
+    if (userAuth.authToken) {
+        axios.defaults.headers.common["authorization"] = `Bearer ${userAuth.authToken}`;
+        // console.log("auth headers:", axios.defaults.headers.common["authorization"]);
+    } else {
+        delete axios.defaults.headers.common["authorization"];
+        console.log("Headers cleared");
+    }
+}, [userAuth.authToken]);
 //   useEffect(() => {
 //     if (userAuth.authToken) {
 //         axios.defaults.headers.common["authorization"] = `Bearer ${userAuth.authToken}`;

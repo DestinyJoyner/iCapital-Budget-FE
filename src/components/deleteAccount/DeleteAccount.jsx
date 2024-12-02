@@ -1,0 +1,1 @@
+import "./DeleteAccount.scss"
