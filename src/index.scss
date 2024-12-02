@@ -2,14 +2,23 @@
 
 *{
     margin:0;
+    
+}
+.App {
+    background-color: #F0F5F8;
 }
 // app header/ subheader subtext fonts
-
-.header-font {
+.header-font, h1, h2, h3, h4, h5 {
     font-family: "Inter";
 }
 .subtext-font {
     font-family:"Open Sans";
+}
+
+// display layouts grid/flex
+.flex-column {
+    display:flex;
+    flex-direction:column;
 }
 
 .flex-column-center {
@@ -26,4 +35,10 @@
 }
 .red {
     color:red;
+}
+
+// component card div style 
+.app-card {
+    background-color: white;
+    border-radius: 10px;
 }

@@ -3,6 +3,7 @@ import { useAuthProvider } from "../../providers/AuthProvider.jsx";
 import { transactionCategories } from "../../utils/transactionCategories.js";
 import { handleFormTextInput } from "../../utils/authFormFunctions.js";
 import { v4 as uuidv4 } from "uuid";
+
 import "./AddTransaction.scss";
 
 export default function AddTransaction({
@@ -53,7 +54,7 @@ export default function AddTransaction({
   }
 
   return (
-    <div className="transaction">
+    <div className="transaction app-card flex-column ">
       <h2>Add a transaction</h2>
 
       <form
@@ -61,7 +62,7 @@ export default function AddTransaction({
         onSubmit={(e) => handleAddTransaction(e)}
       >
         {/* AMOUNT */}
-        <label>
+        <label className="transaction_form_label flex-column">
           <span>Amount: </span>
           <input
             type="number"
@@ -78,7 +79,7 @@ export default function AddTransaction({
         </label>
 
         {/* RADIO BUTTONS TRANSACTION TYPE */}
-        <label>
+        <label className="transaction_form_label flex-column">
           <span>Transaction Type: </span>
           <div className="transaction_form_radioButtons">
             <label>
@@ -106,7 +107,7 @@ export default function AddTransaction({
         </label>
 
         {/* CATEGORY DROPDOWN */}
-        <label>
+        <label className="transaction_form_label flex-column">
           <span>Category: </span>
           <select
             id="category"
@@ -114,16 +115,16 @@ export default function AddTransaction({
             onChange={(event) => handleDropdown(event)}
           >
             <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={uuidv4()} value={category}>
-                {category}
+            {categories.map(({id, category_name}) => (
+              <option key={uuidv4()} value={id}>
+                {category_name}
               </option>
             ))}
           </select>
         </label>
 
         {/* DATE */}
-        <label>
+        <label className="transaction_form_label flex-column">
           <span>Transaction Date: </span>
           <input
             type="date"

@@ -1,5 +1,6 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { useAuthProvider } from "./AuthProvider.jsx";
+import CategoryProvider from "./CategoryProvider.jsx"
 
 export const BudgetData = createContext();
 export function useBudgetProvider() {
@@ -33,6 +34,9 @@ export default function BudgetProvider({ children }) {
     userBudgetSummary, setUserBudgetSummary
 
   }}>
+    <CategoryProvider>
     {children}
+    </CategoryProvider>
+    
     </BudgetData.Provider>);
 }
