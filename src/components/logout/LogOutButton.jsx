@@ -25,10 +25,15 @@ export default function LogOutButton() {
       setLoading(false);
     }
   }
-  return (
-    <button className="logoutButton"
-    disabled={loading} onClick={() => userLogOut()}>
-     Log Out
+  return loading ? (
+    <Loading />
+  ) : (
+    <button
+      className="logoutButton"
+      disabled={loading}
+      onClick={() => userLogOut()}
+    >
+      Log Out
     </button>
   );
 }
