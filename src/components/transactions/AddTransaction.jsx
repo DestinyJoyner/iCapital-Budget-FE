@@ -9,6 +9,7 @@ import "./AddTransaction.scss";
 export default function AddTransaction({
   setUserTransactions,
   setUserBudgetSummary,
+  setUserCategoryExpenses,
 }) {
   const { API, axios } = useAuthProvider();
   const { income, expense } = transactionCategories;
@@ -49,6 +50,7 @@ export default function AddTransaction({
       .then(({ data }) => {
         setUserTransactions(data["updated_transactions"]);
         setUserBudgetSummary(data["budget_summary"]);
+        setUserCategoryExpenses(data["category_totals"]);
       })
       .catch((err) => console.log(err));
   }
@@ -115,7 +117,7 @@ export default function AddTransaction({
             onChange={(event) => handleDropdown(event)}
           >
             <option value="">Select Category</option>
-            {categories.map(({id, category_name}) => (
+            {categories.map(({ id, category_name }) => (
               <option key={uuidv4()} value={id}>
                 {category_name}
               </option>

@@ -3,6 +3,7 @@ import { useBudgetProvider } from "../../providers/BudgetProvider.jsx";
 import { useAuthProvider } from "../../providers/AuthProvider.jsx";
 import { useCategoryProvider } from "../../providers/CategoryProvider.jsx";
 import AddTransaction from "../transactions/AddTransaction.jsx";
+import LineGraph from "../graph/LineGraph.jsx";
 import { v4 as uuidv4 } from "uuid";
 import { categoryIcons } from "../../utils/categoryIcons.js";
 import "./AccountDashboard.scss";
@@ -13,6 +14,7 @@ export default function AccountDashboard() {
     setUserTransactions,
     userBudgetSummary,
     setUserBudgetSummary,
+    setUserCategoryExpenses,
   } = useBudgetProvider();
   const { userAuth } = useAuthProvider();
   const { categoryObj } = useCategoryProvider();
@@ -37,6 +39,7 @@ export default function AccountDashboard() {
           <AddTransaction
             setUserTransactions={setUserTransactions}
             setUserBudgetSummary={setUserBudgetSummary}
+            setUserCategoryExpenses={setUserCategoryExpenses}
           />
         </section>
 
@@ -72,33 +75,9 @@ export default function AccountDashboard() {
           )}
         </section>
       </div>
+
+      {/* EXPENSES LINE GRAPH */}
+      <LineGraph />
     </div>
   );
 }
-
-/* 
-{
-    "added_budget": {
-        "id": 4,
-        "category": "Salary",
-        "amount": "1325.00",
-        "transaction_date": "10/29/2024",
-        "transaction_type": "income"
-    },
-    "budget_summary": {
-        "total_income": "1325.00",
-        "total_expenses": null,
-        "disposable_income": "1325.00"
-    },
-    "updated_transactions": [
-        {
-            "id": 4,
-            "category": "Salary",
-            "amount": "1325.00",
-            "transaction_date": "10/29/2024",
-            "transaction_type": "income"
-        }
-    ]
-}
-
-*/
