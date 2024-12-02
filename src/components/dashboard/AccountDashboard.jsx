@@ -31,29 +31,31 @@ export default function AccountDashboard() {
             </section>
 
             {/* Transactions */}
-            <section className="dashboard_addTransaction">
+            <div className="dashboard_transaction_container">
+            <section className="dashboard_transaction_container_addTransaction">
                 <AddTransaction setUserTransactions={setUserTransactions} setUserBudgetSummary={setUserBudgetSummary} />
             </section>
 
-            <section className="dashboard_transactions app-card">
+            <section className="dashboard_transaction_container_transactions app-card">
             <h2>Transactions</h2>
                 {
                     userTransactions.map(({category, amount, transaction_date, transaction_type}) => 
-                        <div className="dashboard_transactions_transaction subtext-font"
+                        <div className="dashboard_transaction_container_transactions_transaction subtext-font"
                         key={uuidv4()}>
-                            <span> {React.createElement(categoryIcons[category])}</span>
-                            <div className="dashboard_transactions_transaction_details flex-column-center">
-                            <span className="dashboard_transactions_transaction_details_category">{categoryObj[category]}</span>
-                                <span className="dashboard_transactions_transaction_details_date">{transaction_date}</span>
+                            <span className="dashboard_transaction_container_transactions_transaction_icon"> {React.createElement(categoryIcons[category])}</span>
+                            <div className="dashboard_transaction_container_transactions_transaction_details flex-column-center">
+                            <span className="dashboard_transaction_container_transactions_transaction_details_category">{categoryObj[category]}</span>
+                                <span className="dashboard_transaction_container_transactions_transaction_details_date">{transaction_date}</span>
                                 
                             </div>
-                            <span className={`dashboard_transactions_transaction_amount ${transaction_type==="income" ? "green": "red"}`}>
+                            <span className={`dashboard_transaction_container_transactions_transaction_amount ${transaction_type==="income" ? "green": "red"}`}>
                             {transaction_type==="income"? "+ " : "- "}${amount}
                             </span>
                         </div>
                     )
                 }
             </section>
+            </div>
         </div>
     )
 }
