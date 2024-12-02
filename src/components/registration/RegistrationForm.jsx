@@ -59,7 +59,7 @@ export default function RegistrationForm() {
       })
       .catch((err) => {
         console.log("registration error", err);
-        setRegistrationError(err.response?.data.error);
+        setRegistrationError(err.response?.data.error || "An unexpected error occured");
         setLoading(false);
       });
   }

@@ -26,7 +26,7 @@ ChartJS.register(
 );
 
 export default function LineGraph() {
-  const { userCategoryExpenses } = useBudgetProvider();
+  const { userCategoryExpenses} = useBudgetProvider();
   // chart config
   const chartData = {
     labels: Object.keys(userCategoryExpenses || {}),
@@ -123,8 +123,6 @@ export default function LineGraph() {
     Tooltip,         // hover tooltips ??
     Legend           // chart legend for categories
    */
-
-  useEffect(() => {}, [userCategoryExpenses]);
 
   return (
     <div className="line_graph app-card">
