@@ -1,26 +1,27 @@
 .transaction {
   height: 50vh;
-  width: 50vh;
   row-gap: 2vh;
   padding: 1vw;
 
   & h2,
   &_form {
-    margin-left: 2vw;
+    margin-left: 1vw;
   }
 
   &_form {
     display: grid;
-    row-gap: 2.2vh;
+    row-gap: 4vh;
 
     & input[type="submit"] {
       height: 45px;
-      font-size: 22px;
+      font-size: 20px;
+      padding: 0 20px;
     }
 
     & label {
       & span {
         font-family: "Open Sans";
+        font-size: 18px;
       }
     }
 
@@ -29,10 +30,11 @@
 
       & input,
       & select {
-        width: 55%;
-        height: 25px;
+        width: 60%;
+        height: 28px;
         border-radius: 10px;
         text-align: center;
+        font-family: "Open Sans";
       }
     }
 

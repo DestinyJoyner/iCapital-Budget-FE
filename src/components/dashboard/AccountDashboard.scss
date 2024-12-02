@@ -1,8 +1,9 @@
 .dashboard {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   row-gap: 2vh;
   align-items: center;
+  padding-bottom: 4vh;
 
   &_header {
     grid-column: span 2;
@@ -37,14 +38,18 @@
     grid-column: span 2;
     grid-row: 2;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     height: 55vh;
     overflow: hidden;
+    column-gap: 4vw;
+    & > * {
+      margin-left: 2vw;
+    }
 
     &_addTransaction {
       height: 49vh;
       grid-column: 2;
-      margin: 0 2vw 0 0;
+      // margin: 0 2vw 0 0;
     }
 
     &_transactions {
@@ -53,20 +58,17 @@
       row-gap: 1vh;
       grid-row: 1;
       grid-column: 1;
-      width: 80%;
-      margin-left: 2vw;
+      width: 100%;
+      // margin-left: 2vw;
       padding: 2vh 1vw;
       overflow-y: auto;
-      & > * {
-        margin-left: 2vw;
-      }
+      // & > * {
+      //   margin-left: 2vw;
+      // }
 
-      & h2 {
-        margin-bottom: 2vh;
-      }
       &_transaction {
         display: grid;
-        grid-template-columns: 0.5fr 2fr 1.5fr;
+        grid-template-columns: 0.7fr 2fr 1.2fr;
         align-items: center;
 
         &_icon {
