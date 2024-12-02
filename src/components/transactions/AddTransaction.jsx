@@ -144,7 +144,7 @@ const [transactionMessage, setTransactionMessage] = useState(null)
             id="category"
             value={transactionForm["category"]}
             onChange={(event) => handleDropdown(event)}
-            // required
+            required
           >
             <option value="">Select Category</option>
             {categories.map(({ id, category_name }) => (
@@ -168,8 +168,9 @@ const [transactionMessage, setTransactionMessage] = useState(null)
           />
         </label>
 
-        <input type="submit" value="Add Transaction" />
+        <input type="submit" value="Add Transaction" disabled={loading} />
       </form>
+      {loading && <Loading/>}
       {transactionMessage && <span>{transactionMessage}</span>}
     </div>
   );
