@@ -46,7 +46,7 @@
 }
 
 // submit buttons
-input[type="submit"] {
+input[type="submit"], .logoutButton {
     background-color: var(--icapital-blue);
     color: white;
     font-family: "Open Sans";

@@ -1,6 +1,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { useAuthProvider } from "./AuthProvider.jsx";
 import CategoryProvider from "./CategoryProvider.jsx";
+import Loading from "../components/loading/Loading.jsx"
 
 export const BudgetData = createContext();
 export function useBudgetProvider() {
@@ -17,7 +18,7 @@ export default function BudgetProvider({ children }) {
 
   useEffect(() => {
     // depends on token value change to retrieve user budget
-    if (userAuth.authToken) {
+    if (userAuth.authToken && axios.defaults.headers.common["authorization"]) {
       axios
         .get(`${API}/auth/budget`)
         .then(({ data }) => {
@@ -30,7 +31,7 @@ export default function BudgetProvider({ children }) {
         })
         .catch((err) => console.log("buget provider error", err));
     }
-  }, [userAuth.authToken]);
+  }, [userAuth.authToken, axios.defaults.headers.common["authorization"]]);
 
   return (
     <BudgetData.Provider
@@ -42,8 +43,12 @@ export default function BudgetProvider({ children }) {
         userCategoryExpenses,
         setUserCategoryExpenses
       }}
-    >
-      <CategoryProvider>{children}</CategoryProvider>
+    >{
+        userAuth.authToken ? <CategoryProvider>
+        {children}
+        </CategoryProvider> : <Loading />
+    }
+      
     </BudgetData.Provider>
   );
 }
