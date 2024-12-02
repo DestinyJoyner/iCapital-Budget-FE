@@ -2,6 +2,8 @@
 
 *{
     margin:0;
+    --icapital-blue:#0077aa;
+    --error-red: #dc3545;
     
 }
 .App {
@@ -42,3 +44,17 @@
     background-color: white;
     border-radius: 10px;
 }
+
+// submit buttons
+input[type="submit"] {
+    background-color: var(--icapital-blue);
+    color: white;
+    font-family: "Open Sans";
+    width: fit-content;
+    border-radius: 10px;
+    padding: 5px 10px;
+    &:hover {
+      cursor: pointer;
+      background-color: #4caf50;
+    }
+  }
