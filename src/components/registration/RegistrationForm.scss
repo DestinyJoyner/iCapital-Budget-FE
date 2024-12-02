@@ -1,4 +1,7 @@
 .registration_form {
-   
+   &_error {
+    color: var(--error-red);
+    font-size: 16px;
+   }
 
 }
