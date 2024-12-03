@@ -113,31 +113,34 @@ export default function PasswordReset () {
                    :  
                    <>
                    
-                   <h2>Check Email for Password Reset Link</h2>
+                   <h2 className="password_reset_checkEmail">Check Email for Password Reset Link</h2>
                    </>
                    
                
                    :
                    verificationToken && tokenVerified ?
-                   <form onSubmit ={(e) =>handlePasswordSubmit(e)}>
+                   <form
+                   className="password_reset_form authPage_forms flex-column-center" 
+                   onSubmit ={(e) =>handlePasswordSubmit(e)}>
                        <h2>Create New Password</h2>
                        <label>
-                           <span>New Password</span>
+                           
                        <input type="password"
                        id={"new_password"}
                        value={password["new_password"]}
                        onChange ={(e) =>handleFormTextInput (e, password, setPassword) }
                        />
-           
+           <span>New Password</span>
                        </label>
            
                        <label>
-                           <span>Confirm New Password</span>
+                           
                        <input type="password" 
                        id={"confirm_password"}
                        value={password["confirm_password"]}
                        onChange ={(e) =>handleFormTextInput (e, password, setPassword) }
                        />
+                       <span>Confirm New Password</span>
                        </label>
                        <span>{passwordMatch ? "Passwords Match" : "Passwords don't match"}</span>
                       { passwordMatch && <input type="submit" disabled={loading}
