@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react"
 import {useParams} from "react-router-dom"
 import {useAuthProvider} from "../providers/AuthProvider.jsx"
+import {handleFormTextInput} from "../utils/authFormFunctions.js"
 
 export default function PasswordReset () {
     // page linked from email, with verfication code in url -> useParams() to send to BE password controller in useEffect, when validated, reveal new password form on submission, send to be for PUT request
@@ -13,11 +14,27 @@ export default function PasswordReset () {
     const [userEmail, setUserEmail] = useState("")
     const [resetLinkSent, setResetLink] = useState(false)
 
+    const [password, setPassword] = useState({
+        new_password: "",
+        confirm_password: ""
+    })
+
+    const [passwordMatch, setPasswordMatch] = useState(false)
+
     function handleEmailSubmit (e) {
         e.preventDefault()
         axios.post(`${API}/auth/password`, {email:userEmail}).then(({data}) => setResetLink(true)).catch(err => console.log("password reset request failed,", err))
     }
 
+    // track values for password and confirm password
+    useEffect(() => {
+        if(password["new_password"] && password["confirm_password"]){
+            if(password["new_password"] === password["confirm_password"]){
+                setPasswordMatch(true)
+            }
+        }
+       
+    },[password["new_password"] ,password["confirm_password"]])
 
     return !verificationToken ?
     !resetLinkSent ?
@@ -38,9 +55,24 @@ export default function PasswordReset () {
         <form>
             <h2>Create New Password</h2>
             <label>
-            <input type="password" />
+            <input type="password"
+            id={"new_password"}
+            value={password["new_password"]}
+            onChange ={(e) =>handleFormTextInput (e, password, setPassword) }
+            />
+
             </label>
-            
+
+            <label>
+            <input type="password" 
+            id={"confirm_password"}
+            value={password["confirm_password"]}
+            onChange ={(e) =>handleFormTextInput (e, password, setPassword) }
+            />
+            </label>
+            <span>{passwordMatch ? "Passwords Match" : "Passwords don't match"}</span>
+           { passwordMatch && <input type="submit" 
+             />}
         </form>
     
 }
