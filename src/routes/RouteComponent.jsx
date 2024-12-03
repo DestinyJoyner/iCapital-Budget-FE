@@ -32,7 +32,7 @@ export default function RouteComponent() {
         <Route path = "dashboard" element ={<ProtectedRoute element ={Dashboard} />} />
        
 
-        <Route path = "test" element ={<ProtectedRoute element ={Home} />} />
+        {/* <Route path = "test" element ={<ProtectedRoute element ={Home} />} /> */}
       </Route>
 
       {/* ERROR ROUTES */}
