@@ -27,7 +27,7 @@ export default function PasswordReset () {
         axios.post(`${API}/auth/password`, {email:userEmail}).then(({data}) => setResetLink(true)).catch(err => console.log("password reset request failed,", err))
     }
 
-    // submission on new passwords
+    // submission on new passwords, send verfication token in body
 
     // verify token in url
     useEffect(() => {
