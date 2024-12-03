@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import {useParams} from "react-router-dom"
+import {useParams, Navigate} from "react-router-dom"
 import {useAuthProvider} from "../providers/AuthProvider.jsx"
 import {handleFormTextInput} from "../utils/authFormFunctions.js"
 
@@ -14,6 +14,7 @@ export default function PasswordReset () {
     const [userEmail, setUserEmail] = useState("")
     const [resetLinkSent, setResetLink] = useState(false)
 
+    const [tokenVerified, setTokenVerified] = useState(false)
     const [password, setPassword] = useState({
         new_password: "",
         confirm_password: ""
@@ -26,6 +27,18 @@ export default function PasswordReset () {
         axios.post(`${API}/auth/password`, {email:userEmail}).then(({data}) => setResetLink(true)).catch(err => console.log("password reset request failed,", err))
     }
 
+    // submission on new passwords
+
+    // verify token in url
+    useEffect(() => {
+        if(verificationToken){
+            axios.get(`${API}/auth/password/verify-token/${verificationToken}`).then(({data}) => {
+                setUserEmail(data.email)
+                setTokenVerified(true)
+            }).catch(err => console.log("Verification Token error", err))
+        }
+    },[])
+    
     // track values for password and confirm password
     useEffect(() => {
         if(password["new_password"] && password["confirm_password"]){
@@ -52,9 +65,11 @@ export default function PasswordReset () {
         <h2>Check Email for Password Reset Link</h2>
     
         :
+        verificationToken && tokenVerified ?
         <form>
             <h2>Create New Password</h2>
             <label>
+                <span>New Password</span>
             <input type="password"
             id={"new_password"}
             value={password["new_password"]}
@@ -64,6 +79,7 @@ export default function PasswordReset () {
             </label>
 
             <label>
+                <span>Confirm New Password</span>
             <input type="password" 
             id={"confirm_password"}
             value={password["confirm_password"]}
@@ -74,5 +90,8 @@ export default function PasswordReset () {
            { passwordMatch && <input type="submit" 
              />}
         </form>
+        :
+        // <Navigate to="/auth" />
+        <h2>Something went wrong</h2>
     
 }
