@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuthProvider } from "../../providers/AuthProvider.jsx";
 import Loading from "../loading/Loading.jsx";
 import { handleFormTextInput } from "../../utils/authFormFunctions.js";
@@ -62,6 +62,7 @@ export default function LoginForm() {
   }
 
   return (
+    <>
     <form
       className="loginForm app-card flex-column"
       onSubmit={(event) => handleLoginSubmit(event)}
@@ -96,6 +97,11 @@ export default function LoginForm() {
 
       {loading && <Loading />}
       {loginError && <span className="loginForm_error">{loginError}</span>}
+
+      <Link className="loginForm_forgot" to="/password-reset">Forgot Password?</Link>
     </form>
+
+          
+    </>
   );
 }

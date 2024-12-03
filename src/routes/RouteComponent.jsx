@@ -5,6 +5,7 @@ import Error from "../pages/Error.jsx";
 import Verification from "../pages/Verification.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx"
 import Dashboard from "../pages/Dashboard.jsx"
+import PasswordReset from "../pages/PasswordReset.jsx"
 
 export default function RouteComponent() {
   return (
@@ -21,10 +22,17 @@ export default function RouteComponent() {
           <Route path=":verificationToken" element={<Verification />} />
         </Route>
 
+        {/* PASSWORD RESET ROUTE */}
+        <Route path="password-reset">
+          <Route index element={<PasswordReset />} />
+          <Route path=":verificationToken" element={<PasswordReset />} />
+        </Route>
+
+
         <Route path = "dashboard" element ={<ProtectedRoute element ={Dashboard} />} />
        
 
-        <Route path = "test" element ={<ProtectedRoute element ={Home} />} />
+        {/* <Route path = "test" element ={<ProtectedRoute element ={Home} />} /> */}
       </Route>
 
       {/* ERROR ROUTES */}

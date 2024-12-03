@@ -10,6 +10,7 @@ export default function Verification() {
   useEffect(() => {
     if (verificationToken) {
       // if verification code is in url, sen req to auth/verification, if valid, response will hold auth token => setAuthToken
+
       axios
         .post(`${API}/auth/verification`, {
           email: localStorage.getItem("icapital_user_email"),
