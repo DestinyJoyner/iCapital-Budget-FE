@@ -15,7 +15,7 @@ export default function Passcode () {
             user_id: userAuth["user_id"],
             passcode: passcode
         }
-       
+    //    console.log(passcodeObj)
         axios.post(`${API}/auth/login`, passcodeObj).then(({data}) => {
             const { token, user_id, email } = data;
 
