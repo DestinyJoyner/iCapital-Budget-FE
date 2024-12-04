@@ -36,6 +36,7 @@ export default function RegistrationForm() {
         login: registerForm,
       })
       .then(({ data }) => {
+        console.log("res registration", data)
         const { email, first_name, id, is_verified } = data;
 
         // setVerificationToken(verification_token)
@@ -59,7 +60,10 @@ export default function RegistrationForm() {
       })
       .catch((err) => {
         console.log("registration error", err);
-        setRegistrationError(err.response?.data.error || "An unexpected error occured");
+        const errorMessage = typeof err.response?.data.error === 'string' 
+    ? err.response.data.error 
+    : "An unexpected error occurred";
+        setRegistrationError(errorMessage);
         setLoading(false);
       });
   }
