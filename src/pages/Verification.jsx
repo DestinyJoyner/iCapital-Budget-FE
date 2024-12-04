@@ -1,6 +1,9 @@
 import { useEffect,} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuthProvider } from "../providers/AuthProvider.jsx";
+import AppHeader from "../components/appHeader/AppHeader.jsx"
+import Loading from "../components/loading/Loading.jsx"
+import "../styles/Verification.scss"
 
 export default function Verification() {
   const { API, userAuth, axios, setUserAuth } = useAuthProvider();
@@ -34,11 +37,12 @@ export default function Verification() {
   }, []);
 
   return (
-    <div className="verification">
+    <div className="verification ">
+      <AppHeader />
       {!verificationToken ? (
-        <h1>Check Email</h1>
+        <h2>Check Email for Verification Link</h2>
       ) : (
-        <h2>Loading until verified</h2>
+        <Loading />
       )}
     </div>
   );
