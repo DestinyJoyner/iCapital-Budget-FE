@@ -26,7 +26,7 @@ export default function Verification() {
               user_id: data.user.id,
               is_verified: data.is_verified,
             });
-            navigate("/");
+            navigate("/dashboard");
           }
         })
         .catch((err) => console.log(err));

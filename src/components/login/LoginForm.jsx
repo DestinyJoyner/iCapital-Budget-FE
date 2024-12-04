@@ -20,8 +20,17 @@ export default function LoginForm() {
     e.preventDefault();
     // loading state
     setLoading(true);
+    // NEEDS TO CHANGE FOR MFA -> MFA ENDPOINT /auth/mfa/login -> then passcode asked for -> submit then request to /auth/login for auth token
 
     axios
+      .post(`${API}/auth/mfa/login`, { login: loginForm })
+      .then(({ data }) => {
+        setUserAuth({ ...userAuth, user_id: data.user_id});
+        navigate("/passcode");
+      })
+      .catch((err) => console.log(err));
+
+    /*  axios
       .post(`${API}/auth/login`, {
         login: loginForm,
       })
@@ -58,50 +67,50 @@ export default function LoginForm() {
         }
         console.log(err);
         setLoading(false);
-      });
+      }); */
   }
 
   return (
     <>
-    <form
-      className="loginForm app-card flex-column"
-      onSubmit={(event) => handleLoginSubmit(event)}
-    >
-      <h2>Login</h2>
-      <label>
-        <input
-          value={loginForm["email"]}
-          id={"email"}
-          type="text"
-          onChange={(event) =>
-            handleFormTextInput(event, loginForm, setLoginForm)
-          }
-        />
-        <span>Email</span>
-      </label>
+      <form
+        className="loginForm app-card flex-column"
+        onSubmit={(event) => handleLoginSubmit(event)}
+      >
+        <h2>Login</h2>
+        <label>
+          <input
+            value={loginForm["email"]}
+            id={"email"}
+            type="text"
+            onChange={(event) =>
+              handleFormTextInput(event, loginForm, setLoginForm)
+            }
+          />
+          <span>Email</span>
+        </label>
 
-      <label>
-        <input
-          type="password"
-          value={loginForm["password"]}
-          id={"password"}
-          onChange={(event) =>
-            handleFormTextInput(event, loginForm, setLoginForm)
-          }
-          disabled={loading}
-        />
-        <span>Password</span>
-      </label>
+        <label>
+          <input
+            type="password"
+            value={loginForm["password"]}
+            id={"password"}
+            onChange={(event) =>
+              handleFormTextInput(event, loginForm, setLoginForm)
+            }
+            disabled={loading}
+          />
+          <span>Password</span>
+        </label>
 
-      <input type="submit" value="Login" />
+        <input type="submit" value="Login" />
 
-      {loading && <Loading />}
-      {loginError && <span className="loginForm_error">{loginError}</span>}
+        {loading && <Loading />}
+        {loginError && <span className="loginForm_error">{loginError}</span>}
 
-      <Link className="loginForm_forgot" to="/password-reset">Forgot Password?</Link>
-    </form>
-
-          
+        <Link className="loginForm_forgot" to="/password-reset">
+          Forgot Password?
+        </Link>
+      </form>
     </>
   );
 }
