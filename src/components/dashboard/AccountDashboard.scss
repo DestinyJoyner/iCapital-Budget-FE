@@ -46,41 +46,42 @@
     grid-template-columns: repeat(3, 1fr);
     height: 55vh;
     overflow: hidden;
-    column-gap: 4vw;
-    & > * {
-      margin-left: 2vw;
+    column-gap: 2vw;
+    padding: 0 1vw;
+    & >* {
+      padding: 1vw;
     }
 
     &_addTransaction {
-      height: 49vh;
-      grid-column: 2;
-      // margin: 0 2vw 0 0;
+      grid-column: 3;
+      height: 100%;
+      border: 1px solid red;
+
+    }
+
+    .user_financial_report {
+      grid-column:2;
+      grid-row:1;
     }
 
     &_transactions {
-      height: 49vh;
+      max-height: 100%;
       display: grid;
       row-gap: 1vh;
       grid-row: 1;
       grid-column: 1;
-      width: 100%;
-      // margin-left: 2vw;
-      padding: 2vh 1vw;
       overflow-y: auto;
-      // & > * {
-      //   margin-left: 2vw;
-      // }
-
+    
       &_transaction {
         display: grid;
-        grid-template-columns: 0.7fr 2fr 1.2fr;
+        grid-template-columns: 0.6fr 2fr 1.3fr;
         align-items: center;
 
         &_icon {
           // justify-self:center;
           & svg {
-            width: 2em;
-            height: 2em;
+            width: 1.5em;
+            height: 1.5em;
             border-radius: 10px;
             padding: 5px;
             background-color: #f0f4f8;
@@ -94,17 +95,17 @@
             align-self: flex-start;
           }
           &_category {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             color: rgba(0, 0, 0, 0.87);
           }
           &_date {
-            font-size: 14px;
+            font-size: 12px;
             color: rgba(0, 0, 0, 0.6);
           }
         }
         &_amount {
-          font-size: 20px;
+          font-size: 16px;
           font-weight: 600;
         }
       }

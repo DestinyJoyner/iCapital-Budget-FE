@@ -50,6 +50,14 @@ function calculateIncomeGroupTotals (userCategoryExpenses) {
 
 // use income group objects to calculate if within or exceeds thresholds for warnings
 function calculateThresholdPercentage (incomeGroupObj, total_income) {
+    if (!total_income || total_income <= 0) {
+        return {
+            needs: 0,
+            wants: 0,
+            savings: 0
+        };
+    }
+
     const percentages = {
         needs: ((incomeGroupObj.needs / total_income) * 100).toFixed(2),
         wants: ((incomeGroupObj.wants / total_income) * 100).toFixed(2),

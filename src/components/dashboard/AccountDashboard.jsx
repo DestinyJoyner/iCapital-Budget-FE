@@ -6,7 +6,7 @@ import AddTransaction from "../transactions/AddTransaction.jsx";
 import LineGraph from "../graph/LineGraph.jsx";
 import LogOutButton from "../logout/LogOutButton.jsx"
 import DeleteAccount from "../deleteAccount/DeleteAccount.jsx"
-import UserFinancialStatus from "../financial/UserFinancialStatus.jsx"
+import UserFinancialReport from "../financial/UserFinancialReport.jsx"
 import { v4 as uuidv4 } from "uuid";
 import { categoryIcons } from "../../utils/categoryIcons.js";
 import "./AccountDashboard.scss";
@@ -44,14 +44,13 @@ export default function AccountDashboard() {
 
       {/* Transactions */}
       <div className="dashboard_transaction_container">
-        <section className="dashboard_transaction_container_addTransaction">
+      
           <AddTransaction
             setUserTransactions={setUserTransactions}
             setUserBudgetSummary={setUserBudgetSummary}
             setUserCategoryExpenses={setUserCategoryExpenses}
           />
-        </section>
-
+        
         <section className="dashboard_transaction_container_transactions app-card">
           <h2>Transactions</h2>
           {userTransactions.map(
@@ -83,9 +82,9 @@ export default function AccountDashboard() {
             )
           )}
         </section>
-        
+
           {/* User Financial Analysis */}
-          <UserFinancialStatus />
+          <UserFinancialReport />
 
       </div>
 

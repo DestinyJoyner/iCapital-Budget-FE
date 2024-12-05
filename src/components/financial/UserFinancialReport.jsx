@@ -6,9 +6,9 @@ import {
     analyzeThresholds
 
 } from "../../utils/financialCategoryData.js"
-import "./UserFinancialStatus.scss"
+import "./UserFinancialReport.scss"
 
-export default function UserFinancialStatus() {
+export default function UserFinancialReport() {
     const {userCategoryExpenses, userBudgetSummary} = useBudgetProvider()
     const [thresholdPercentages, setThresholdPercentages] = useState({
         needs: 0,
@@ -36,7 +36,8 @@ export default function UserFinancialStatus() {
 
 
     return( 
-    <div className="user_financial_status app-card">
+    <div className="user_financial_report app-card">
+        <h2>Financial Report</h2>
        <p> Needs : {thresholdPercentages.needs}% {thresholdAnalysis.needs}</p>
        <p> Wants : {thresholdPercentages.wants}% {thresholdAnalysis.wants}</p>
        <p> Savings : {thresholdPercentages.savings}% {thresholdAnalysis.savings}</p>
