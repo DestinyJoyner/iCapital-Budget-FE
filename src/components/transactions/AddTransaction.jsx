@@ -63,7 +63,7 @@ export default function AddTransaction({
           amount: "",
           category: "",
           description: "",
-          transaction_type: "",
+          transaction_type: "expense",
           transaction_date: todaysDate,
         });
 

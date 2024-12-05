@@ -7,6 +7,7 @@ import LogOutButton from "../logout/LogOutButton.jsx";
 import DeleteAccount from "../deleteAccount/DeleteAccount.jsx";
 import Transactions from "../transactions/Transactions.jsx";
 import UserFinancialReport from "../financial/UserFinancialReport.jsx";
+import StockData from "../polygon-io/StockData.jsx"
 import "./AccountDashboard.scss";
 
 export default function AccountDashboard() {
@@ -20,6 +21,8 @@ export default function AccountDashboard() {
   const { userAuth } = useAuthProvider();
 
   const { disposable_income, total_expenses, total_income } = userBudgetSummary;
+
+  const [ticker, setTicker] = useState("AAPL")
 
   return (
     <div className="dashboard">
@@ -54,6 +57,9 @@ export default function AccountDashboard() {
 
       {/* EXPENSES LINE GRAPH */}
       <LineGraph />
+
+      {/* STOCK DATA POLYGON API */}
+      <StockData ticker ={ticker} setTicker={setTicker} />
     </div>
   );
 }
