@@ -1,6 +1,7 @@
 .dashboard {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  width:100%;
+  grid-template-columns: repeat(2,1fr);
   row-gap: 2vh;
   align-items: center;
   padding-bottom: 4vh;
@@ -66,5 +67,9 @@
     .transactions {
       grid-column: 1;
     }
+  }
+  .line_graph {
+    grid-column: 1;
+    grid-row:3;
   }
 }

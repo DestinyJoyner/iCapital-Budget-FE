@@ -7,6 +7,7 @@ import LogOutButton from "../logout/LogOutButton.jsx";
 import DeleteAccount from "../deleteAccount/DeleteAccount.jsx";
 import Transactions from "../transactions/Transactions.jsx";
 import UserFinancialReport from "../financial/UserFinancialReport.jsx";
+import StockData from "../polygon-io/StockData.jsx"
 import "./AccountDashboard.scss";
 
 export default function AccountDashboard() {
@@ -54,6 +55,9 @@ export default function AccountDashboard() {
 
       {/* EXPENSES LINE GRAPH */}
       <LineGraph />
+
+      {/* STOCK DATA POLYGON API */}
+      <StockData ticker ={"GOOGL"} />
     </div>
   );
 }
