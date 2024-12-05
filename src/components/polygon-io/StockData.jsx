@@ -1,5 +1,6 @@
 // Experimental -> keep seperate
 import {useState, useEffect} from "react"
+import StockChart from "./StockChart.jsx"
 import {fetchStockData} from "../../utils/polygonAPI.js"
 
 export default function StockData({ticker}) {
@@ -24,16 +25,16 @@ useEffect( () => {
     const getData = async () => {
         const fetchData = await fetchStockData(ticker)
         // console.log(fetchData)
-        setStockData(fetchData)
+        setStockData(fetchData.results)
     }
-    getData()
-    // setStockData(fetchData)
+    // getData()
 },[ticker])
 
+useEffect(() => {},[stockData])
 
     return (
-        <div className="stockData">
-
-        </div>
+     
+            stockData &&<StockChart stockData={stockData} ticker = {ticker} />
+         
     )
 }

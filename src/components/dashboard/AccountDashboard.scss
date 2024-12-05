@@ -68,8 +68,15 @@
       grid-column: 1;
     }
   }
+
   .line_graph {
     grid-column: 1;
     grid-row:3;
+  }
+
+  .stockData {
+    grid-column: 2;
+    grid-row:3;
+    
   }
 }

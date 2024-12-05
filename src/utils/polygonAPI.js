@@ -25,9 +25,8 @@ const endDate = endWeek.toISOString().split('T')[0];
 
 async function fetchStockData(ticker) {
     const url = `https://api.polygon.io/v2/aggs/ticker/${ticker}/range/1/day/${startDate}/${endDate}?apiKey=${POLYGON_API_KEY}`;
-    console.log(url)
-    // https://api.polygon.io/v2/aggs/ticker/GOOGL/range/1/day/2024-11-28/2024-12-05?apiKey=JQ7VNprpkdmwU3LlO3WAFpZVP3A4SgSn
-
+    // console.log(url)
+    // https://api.polygon.io/v2/aggs/ticker/GOOGL/range/1/day/2024-11-28/2024-12-05?apiKey=
    const resp = await axios.get(url, {
     headers: {
         'Authorization': `Bearer ${POLYGON_API_KEY}`
