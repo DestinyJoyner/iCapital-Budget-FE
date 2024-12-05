@@ -1,5 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import { v4 as uuidv4 } from "uuid";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -140,7 +141,7 @@ Low volume + Price change = Potentially weak or unsustainable movement
     <div className="stockData line_graph app-card">
       <select onChange={(e) => setTicker(e.target.value)}>
         {stockTickers.map(({ ticker, name }) => (
-          <option value={ticker}>{name}</option>
+          <option key={uuidv4()} value={ticker}>{name}</option>
         ))}
       </select>
       <Line data={chartData} options={options} />

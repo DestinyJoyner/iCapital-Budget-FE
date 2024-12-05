@@ -15,11 +15,13 @@ min-height: 100vh;
     }
 }
     &_enter {
-        font-size: 32px;
+        font-size: 30px;
         font-weight: 600;
         text-decoration: none;
         display:flex;
         align-items: center;
-        margin-top: 1vh;
+        position:relative;
+        top: 2vh;
+        // margin-top: 1vh;
     }
 }
