@@ -29,7 +29,7 @@ function calculateIncomeGroupTotals (userCategoryExpenses) {
 
     // loop into userCategoryExpenses obj check if key in income group array
     const needsCategoryArr = incomeGroups.needs
-    const wantsCategoryArr = incomeGroups.wantss
+    const wantsCategoryArr = incomeGroups.wants
     const savingsCategoryArr = incomeGroups.savings
 
     for(const key in userCategoryExpenses ){
