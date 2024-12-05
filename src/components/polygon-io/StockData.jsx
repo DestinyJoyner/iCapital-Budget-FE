@@ -1,40 +1,28 @@
 // Experimental -> keep seperate
-import {useState, useEffect} from "react"
-import StockChart from "./StockChart.jsx"
-import {fetchStockData} from "../../utils/polygonAPI.js"
+import { useState, useEffect } from "react";
+import StockChart from "./StockChart.jsx";
+import { fetchStockData } from "../../utils/polygonAPI.js";
+import "./StockData.scss";
 
-export default function StockData({ticker}) {
-const [stockData, setStockData] = useState([])
-/* 
-"AAPL" Apple
-"MSFT" Microsoft
-"GOOGL" Google/Alphabet
-"META" Meta/Facebook
-"AMZN" Amazon
-"V" Visa
-"MA" Mastercard
-"JPM" JPMorgan Chase
-"BAC" Bank of America
-"WFC" Wells Fargo
+export default function StockData({ ticker, setTicker }) {
+  const [stockData, setStockData] = useState([]);
 
-*/
-
-useEffect( () => {
+  useEffect(() => {
     // fetchStockData(ticker) ->week?
-    
+
     const getData = async () => {
-        const fetchData = await fetchStockData(ticker)
-        // console.log(fetchData)
-        setStockData(fetchData.results)
-    }
-    // getData()
-},[ticker])
+      const fetchData = await fetchStockData(ticker);
+      // console.log(fetchData)
+      setStockData(fetchData.results);
+    };
+    getData();
+  }, [ticker]);
 
-useEffect(() => {},[stockData])
+  useEffect(() => {}, [stockData]);
 
-    return (
-     
-            stockData &&<StockChart stockData={stockData} ticker = {ticker} />
-         
+  return (
+    stockData && (
+      <StockChart stockData={stockData} ticker={ticker} setTicker={setTicker} />
     )
+  );
 }

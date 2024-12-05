@@ -22,6 +22,8 @@ export default function AccountDashboard() {
 
   const { disposable_income, total_expenses, total_income } = userBudgetSummary;
 
+  const [ticker, setTicker] = useState("AAPL")
+
   return (
     <div className="dashboard">
       <section className="dashboard_header">
@@ -57,7 +59,7 @@ export default function AccountDashboard() {
       <LineGraph />
 
       {/* STOCK DATA POLYGON API */}
-      <StockData ticker ={"GOOGL"} />
+      <StockData ticker ={ticker} setTicker={setTicker} />
     </div>
   );
 }
