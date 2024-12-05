@@ -1,0 +1,25 @@
+.landingPage {
+    display: grid;
+    // margin: 0 auto;
+    justify-items: center;
+    grid-template-rows: 24vh 6vh 5vh repeat(3,12vh) 8vh;
+    row-gap: 1vh;
+min-height: 100vh;
+
+&_features {
+    max-width: 300px;
+    display:grid;
+    & svg {
+        height: 1.2em;
+        width: 1.2em;
+    }
+}
+    &_enter {
+        font-size: 32px;
+        font-weight: 600;
+        text-decoration: none;
+        display:flex;
+        align-items: center;
+        margin-top: 1vh;
+    }
+}
