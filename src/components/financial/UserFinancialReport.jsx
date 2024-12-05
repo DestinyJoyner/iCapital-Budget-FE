@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useBudgetProvider } from "../../providers/BudgetProvider.jsx";
-import FinancialReportCategory from "./FinancialReportCategory.jsx"
+import FinancialReportCategory from "./FinancialReportCategory.jsx";
 import {
   calculateIncomeGroupTotals,
   calculateThresholdPercentage,
@@ -37,33 +37,25 @@ export default function UserFinancialReport() {
   return (
     <div className="user_financial_report app-card flex-column">
       <h2>Financial Report</h2>
-      
-      <FinancialReportCategory 
-      category ={"Needs"}
-      percentage={thresholdPercentages.needs} 
-      analysis ={thresholdAnalysis.needs}
+
+      <FinancialReportCategory
+        category={"Needs"}
+        percentage={thresholdPercentages.needs}
+        analysis={thresholdAnalysis.needs}
       />
 
-<FinancialReportCategory 
-      category ={"Wants"}
-      percentage={thresholdPercentages.wants} 
-      analysis ={thresholdAnalysis.wants}
+      <FinancialReportCategory
+        category={"Wants"}
+        percentage={thresholdPercentages.wants}
+        analysis={thresholdAnalysis.wants}
       />
 
-<FinancialReportCategory 
-      category ={"Savings"}
-      percentage={thresholdPercentages.savings} 
-      analysis ={thresholdAnalysis.savings}
+      <FinancialReportCategory
+        category={"Savings"}
+        percentage={thresholdPercentages.savings}
+        analysis={thresholdAnalysis.savings}
       />
-   
-      {/* <section className="user_financial_report_category">
-        {" "}
-        <h3>Savings</h3>
-        <span className="user_financial_report_category_percentage">
-          {thresholdPercentages.savings}%{" "}
-        </span>
-        <span className="user_financial_report_category_analysis">{thresholdAnalysis.savings}</span>
-      </section> */}
+
       <span className="user_financial_report_subtext subtext-font">
         This financial report is based on the 50/30/20 budgeting rule, which
         suggests allocating 50% of your income to needs, 30% to wants, and 20%
