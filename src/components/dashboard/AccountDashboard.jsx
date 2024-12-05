@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useBudgetProvider } from "../../providers/BudgetProvider.jsx";
 import { useAuthProvider } from "../../providers/AuthProvider.jsx";
-import { useCategoryProvider } from "../../providers/CategoryProvider.jsx";
 import AddTransaction from "../transactions/AddTransaction.jsx";
 import LineGraph from "../graph/LineGraph.jsx";
-import LogOutButton from "../logout/LogOutButton.jsx"
-import DeleteAccount from "../deleteAccount/DeleteAccount.jsx"
-import { v4 as uuidv4 } from "uuid";
-import { categoryIcons } from "../../utils/categoryIcons.js";
+import LogOutButton from "../logout/LogOutButton.jsx";
+import DeleteAccount from "../deleteAccount/DeleteAccount.jsx";
+import Transactions from "../transactions/Transactions.jsx";
+import UserFinancialReport from "../financial/UserFinancialReport.jsx";
 import "./AccountDashboard.scss";
 
 export default function AccountDashboard() {
@@ -19,7 +18,6 @@ export default function AccountDashboard() {
     setUserCategoryExpenses,
   } = useBudgetProvider();
   const { userAuth } = useAuthProvider();
-  const { categoryObj } = useCategoryProvider();
 
   const { disposable_income, total_expenses, total_income } = userBudgetSummary;
 
@@ -27,9 +25,8 @@ export default function AccountDashboard() {
     <div className="dashboard">
       <section className="dashboard_header">
         <div className="dashboard_header_left">
-
           <h2 className="header-font">Welcome, {userAuth.first_name}!</h2>
-          <span className = "dashboard_header_buttons">
+          <span className="dashboard_header_buttons">
             <LogOutButton />
             <DeleteAccount />
           </span>
@@ -43,45 +40,16 @@ export default function AccountDashboard() {
 
       {/* Transactions */}
       <div className="dashboard_transaction_container">
-        <section className="dashboard_transaction_container_addTransaction">
-          <AddTransaction
-            setUserTransactions={setUserTransactions}
-            setUserBudgetSummary={setUserBudgetSummary}
-            setUserCategoryExpenses={setUserCategoryExpenses}
-          />
-        </section>
+        <AddTransaction
+          setUserTransactions={setUserTransactions}
+          setUserBudgetSummary={setUserBudgetSummary}
+          setUserCategoryExpenses={setUserCategoryExpenses}
+        />
 
-        <section className="dashboard_transaction_container_transactions app-card">
-          <h2>Transactions</h2>
-          {userTransactions.map(
-            ({ category, amount, transaction_date, transaction_type }) => (
-              <div
-                className="dashboard_transaction_container_transactions_transaction subtext-font"
-                key={uuidv4()}
-              >
-                <span className="dashboard_transaction_container_transactions_transaction_icon">
-                  {" "}
-                  {React.createElement(categoryIcons[category])}
-                </span>
-                <div className="dashboard_transaction_container_transactions_transaction_details flex-column-center">
-                  <span className="dashboard_transaction_container_transactions_transaction_details_category">
-                    {categoryObj[category]}
-                  </span>
-                  <span className="dashboard_transaction_container_transactions_transaction_details_date">
-                    {transaction_date}
-                  </span>
-                </div>
-                <span
-                  className={`dashboard_transaction_container_transactions_transaction_amount ${
-                    transaction_type === "income" ? "green" : "red"
-                  }`}
-                >
-                  {transaction_type === "income" ? "+ " : "- "}${amount}
-                </span>
-              </div>
-            )
-          )}
-        </section>
+        <Transactions userTransactions={userTransactions} />
+
+        {/* User Financial Analysis */}
+        <UserFinancialReport />
       </div>
 
       {/* EXPENSES LINE GRAPH */}

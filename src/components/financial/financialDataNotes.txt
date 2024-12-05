@@ -1,0 +1,64 @@
+BUDGET RECCOMENDATONS/ USER RISK PROFILE/ FINANCIAL ADVIDE
+
+    - Research/ Implement AI-based recommendation system for low risk stocks
+    - Tailor suggestions based on user profile and risk preference
+    - create user risk profile by calculating savings ratio, income stability, and spending patterns
+    - generate investment recommendations based on  risk tolerance, user disposable income, market conditions
+    - provide personalized advice based on spending patterns that can be optimized and suggest savings goals
+
+calculating based on app data -> percentage and categories?
+    - common types of percentage-based budgets is the 50/30/20 rule. The idea is to divide your income into three categories, spending 50% on needs, 30% on wants, and 20% on savings. (Senator Elizabeth Warren in her book "All Your Worth: The Ultimate Lifetime Money Plan")
+
+- Polygon io 
+    - https://polygon.io/blog/tag/tutorial
+    - sentiment anaylysis ticker?
+    - polygon + streamlit?
+    - Polygon.io + JavaScript: Unlocking Real-Time and Historical Stock Market Data
+
+ChatGpT Organize categories ():
+Needs (50%) -> Risk Level: Exceeding 55%-60% of income.
+Expenses necessary for basic living and survival:
+Rent/Mortgage
+Utilities
+Groceries
+Transportation (commuting, car payments, gas)
+Healthcare (medical bills, prescriptions, insurance premiums)
+Insurance (health, auto, home)
+Phone/Internet (basic connectivity)
+
+Wants (30%) ->  Exceeding 35%-40% of income.
+Discretionary spending for enjoyment or lifestyle:
+Personal Care (haircuts, spa treatments beyond essentials)
+Clothing (non-essential or luxury items)
+Dining Out
+Entertainment (movies, concerts, amusement parks)
+Shopping (non-essential purchases)
+Hobbies
+Streaming Services
+Travel
+Gifts (giving to others, non-essential)
+
+Savings/Debt Repayment (20%) -> Falling below 15%-10% of income.
+Money set aside for financial security or used to reduce debt:
+Savings (emergency fund, retirement contributions)
+Investments (stocks, mutual funds, bonds)
+Debt Payment (credit card debt, student loans, etc.)
+Education (if it's for skill-building or long-term investment)
+
+AFTER CALCULATING CATEGOEEY PERCENTAGES :
+    -Practical Steps to Address Risks
+Track Expenses:
+Break down each category and subcategory to identify overspending patterns.
+
+Adjust Priorities:
+Focus on reducing the most flexible categories first (e.g., wants) before adjusting needs.
+
+Set Warning Thresholds:
+
+Needs: 55%
+Wants: 35%
+Savings/Debt Repayment: 15% (minimum)
+Reallocate Funds:
+If one category exceeds its threshold, reallocate funds from less critical subcategories to stay balanced.
+
+

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthProvider } from "../../providers/AuthProvider.jsx";
-import Loading from "../loading/Loading.jsx"
+import Loading from "../loading/Loading.jsx";
 import { transactionCategories } from "../../utils/transactionCategories.js";
 import { handleFormTextInput } from "../../utils/authFormFunctions.js";
 import { v4 as uuidv4 } from "uuid";
@@ -22,9 +22,9 @@ export default function AddTransaction({
     transaction_date: todaysDate,
   });
   const [categories, setCategories] = useState(expense);
-  const [loading, setLoading] = useState(false)
-//   addTransaction error state
-const [transactionMessage, setTransactionMessage] = useState(null)
+  const [loading, setLoading] = useState(false);
+  //   addTransaction error state
+  const [transactionMessage, setTransactionMessage] = useState(null);
 
   // handle radio button transaction type
   function handleRadioButtons(e) {
@@ -43,8 +43,8 @@ const [transactionMessage, setTransactionMessage] = useState(null)
   //  handle addTransaction Submit
   function handleAddTransaction(e) {
     e.preventDefault();
-    setLoading(true)
-    setTransactionMessage(null)
+    setLoading(true);
+    setTransactionMessage(null);
     const authToken = localStorage.getItem("token");
     // axios.post(url, data, config)
     axios
@@ -60,39 +60,40 @@ const [transactionMessage, setTransactionMessage] = useState(null)
 
         // clear form since on same page
         setTransactionForm({
-            amount: "",
-            category: "",
-            description: "",
-            transaction_type: "",
-            transaction_date: todaysDate,
-        })
-        
+          amount: "",
+          category: "",
+          description: "",
+          transaction_type: "",
+          transaction_date: todaysDate,
+        });
 
         // loading stage for updating transactions
         setTimeout(() => {
-            setLoading(false);
-            setTransactionMessage("Transaction added!")
-        }, 500); 
+          setLoading(false);
+          setTransactionMessage("Transaction added!");
+        }, 500);
       })
       .catch((err) => {
-        if(err.response){
-            setTransactionMessage(err.response.data.errors[0].msg||"Failed to add transaction.")
+        if (err.response) {
+          setTransactionMessage(
+            err.response.data.errors[0].msg || "Failed to add transaction."
+          );
         }
-        console.log(err)
-        setLoading(false)
-    });
+        console.log(err);
+        setLoading(false);
+      });
   }
 
   return (
-    <div className="transaction app-card flex-column ">
+    <div className="add_transaction app-card flex-column ">
       <h2>Add a transaction</h2>
 
       <form
-        className="transaction_form"
+        className="add_transaction_form"
         onSubmit={(e) => handleAddTransaction(e)}
       >
         {/* AMOUNT */}
-        <label className="transaction_form_label flex-column">
+        <label className="add_transaction_form_label flex-column">
           <span>Amount: </span>
           <input
             type="number"
@@ -109,9 +110,9 @@ const [transactionMessage, setTransactionMessage] = useState(null)
         </label>
 
         {/* RADIO BUTTONS TRANSACTION TYPE */}
-        <label className="transaction_form_label flex-column">
+        <label className="add_transaction_form_label flex-column">
           <span>Transaction Type: </span>
-          <div className="transaction_form_radioButtons">
+          <div className="add_transaction_form_radioButtons">
             <label>
               <input
                 type="radio"
@@ -138,7 +139,7 @@ const [transactionMessage, setTransactionMessage] = useState(null)
         </label>
 
         {/* CATEGORY DROPDOWN */}
-        <label className="transaction_form_label flex-column">
+        <label className="add_transaction_form_label flex-column">
           <span>Category: </span>
           <select
             id="category"
@@ -156,7 +157,7 @@ const [transactionMessage, setTransactionMessage] = useState(null)
         </label>
 
         {/* DATE */}
-        <label className="transaction_form_label flex-column">
+        <label className="add_transaction_form_label flex-column">
           <span>Transaction Date: </span>
           <input
             type="date"
@@ -170,7 +171,7 @@ const [transactionMessage, setTransactionMessage] = useState(null)
 
         <input type="submit" value="Add Transaction" disabled={loading} />
       </form>
-      {loading && <Loading/>}
+      {loading && <Loading />}
       {transactionMessage && <span>{transactionMessage}</span>}
     </div>
   );

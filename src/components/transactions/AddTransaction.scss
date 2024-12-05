@@ -1,12 +1,5 @@
-.transaction {
-  height: 50vh;
+.add_transaction {
   row-gap: 2vh;
-  padding: 1vw;
-
-  & h2,
-  &_form {
-    margin-left: 1vw;
-  }
 
   &_form {
     display: grid;
@@ -16,6 +9,7 @@
       height: 45px;
       font-size: 20px;
       padding: 0 20px;
+      margin-top: 1vh;
     }
 
     & label {
