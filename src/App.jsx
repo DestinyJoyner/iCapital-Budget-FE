@@ -1,4 +1,5 @@
 import RouteComponent from "./routes/RouteComponent.jsx"
+import Footer from "./components/footer/Footer.jsx"
 import './App.scss'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
    <div className="App">
     <RouteComponent />
+    <Footer />
    </div>
   )
 }

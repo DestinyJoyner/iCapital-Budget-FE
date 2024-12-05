@@ -1,22 +1,23 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "../pages/Home.jsx";
-import Auth from "../pages/Auth.jsx"
+import Auth from "../pages/Auth.jsx";
 import Error from "../pages/Error.jsx";
 import Verification from "../pages/Verification.jsx";
-import ProtectedRoute from "./ProtectedRoute.jsx"
-import Dashboard from "../pages/Dashboard.jsx"
-import PasswordReset from "../pages/PasswordReset.jsx"
-import Passcode from "../pages/Passcode.jsx"
+import ProtectedRoute from "./ProtectedRoute.jsx";
+import Dashboard from "../pages/Dashboard.jsx";
+import PasswordReset from "../pages/PasswordReset.jsx";
+import Passcode from "../pages/Passcode.jsx";
+import LandingPage from "../components/landingPage/LandingPage.jsx";
 
 export default function RouteComponent() {
   return (
     <Routes>
       <Route path="/">
-        <Route index element={<Home />} />
+      {/* LANDING PAGE */}
+        <Route index element={<LandingPage />} />
 
-         {/* LOGIN / REGISTRATION ROUTE */}
-         <Route path="auth" element={<Auth />} />
-        
+        {/* LOGIN / REGISTRATION ROUTE */}
+        <Route path="auth" element={<Auth />} />
+
         {/* VERIFICATION ROUTE */}
         <Route path="verification">
           <Route index element={<Verification />} />
@@ -29,14 +30,15 @@ export default function RouteComponent() {
           <Route path=":verificationToken" element={<PasswordReset />} />
         </Route>
 
-         {/* PASSCODE ROUTE */}
-         <Route path="passcode">
+        {/* PASSCODE ROUTE */}
+        <Route path="passcode">
           <Route index element={<Passcode />} />
         </Route>
 
-
-        <Route path = "dashboard" element ={<ProtectedRoute element ={Dashboard} />} />
-       
+        <Route
+          path="dashboard"
+          element={<ProtectedRoute element={Dashboard} />}
+        />
 
         {/* <Route path = "test" element ={<ProtectedRoute element ={Home} />} /> */}
       </Route>

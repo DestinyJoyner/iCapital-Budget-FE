@@ -1,0 +1,27 @@
+.footer {
+  background-color: var(--icapital-blue);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 22px;
+  color: white;
+  font-family: "Open Sans";
+  font-size: 13px;
+
+  &_content {
+    display: flex;
+    align-items: center;
+    column-gap: 1vw;
+    justify-content: space-around;
+    width: fit-content;
+    margin: 0 auto;
+    & svg {
+      height: 1.2em;
+      width: 1.2em;
+      position: relative;
+      top: 0.3vh;
+      color: white;
+    }
+  }
+}
