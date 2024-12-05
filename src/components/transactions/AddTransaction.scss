@@ -3,13 +3,12 @@
 
   &_form {
     display: grid;
-    row-gap: 3vh;
+    row-gap: 2.5vh;
 
     & input[type="submit"] {
       height: 45px;
       font-size: 20px;
       padding: 0 20px;
-      margin-top: 1vh;
     }
 
     & label {
