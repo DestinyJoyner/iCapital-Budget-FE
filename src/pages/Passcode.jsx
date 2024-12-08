@@ -17,16 +17,18 @@ export default function Passcode () {
         }
     //    console.log(passcodeObj)
         axios.post(`${API}/auth/login`, passcodeObj).then(({data}) => {
-            const { token, user_id, email } = data;
+            const { token, user_id, email, first_name } = data;
 
         localStorage.setItem("icapital_user_email", email);
         localStorage.setItem("token", token);
+        localStorage.setItem("icapital_user_first_name", first_name);
 
         setUserAuth({
           ...userAuth,
           user_id: user_id,
           authToken: token,
           email: email,
+          first_name: first_name
         });
 
         //   timeout for loading while fetching b4 navigate

@@ -39,7 +39,7 @@ export default function ProjectedEarnings() {
   //   const [sharePrice, setSharePrice] = useState(null);
   const [amountInvesting, setAmountInvesting] = useState(0);
   //   iff user cant afford share
-  const [savingsNeededInvest, setSavingsNeededToInvest] = useState(null);
+  const [savingsNeededInvest, setSavingsNeededToInvest] = useState(0);
   //   if user can afford shares
   const [numberOfShares, setNumberOfShares] = useState(0);
   const [affordShare, setAffordShare] = useState(false);
@@ -88,13 +88,16 @@ export default function ProjectedEarnings() {
   }
 
   useEffect(() => {
-    // calculate ticker p/e ratio
+    if (tickerClosingPrice && earningsPerShare && userSavings){
+        // calculate ticker p/e ratio
     const PERatio = calculatePERatio();
     setStockPERatio(PERatio);
     // calculate projected returns
     const userReturns = returnsBasedOnSavingsPercentage(savingsPercentage);
     setProjectedEarnings(userReturns);
-  }, [ticker]);
+    }
+    
+  }, [tickerClosingPrice, earningsPerShare, userSavings, savingsPercentage]);
 
   return (
     <div className="projectedEarnings app-card">
