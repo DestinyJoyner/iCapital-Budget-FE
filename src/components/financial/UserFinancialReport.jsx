@@ -9,7 +9,8 @@ import {
 import "./UserFinancialReport.scss";
 
 export default function UserFinancialReport() {
-  const { userCategoryExpenses, userBudgetSummary } = useBudgetProvider();
+  const { userCategoryExpenses, userBudgetSummary,  
+    setUserSavings } = useBudgetProvider();
   const [thresholdPercentages, setThresholdPercentages] = useState({
     needs: 0,
     wants: 0,
@@ -24,6 +25,8 @@ export default function UserFinancialReport() {
   // calculate and set values
   useEffect(() => {
     const expenseTotals = calculateIncomeGroupTotals(userCategoryExpenses);
+    
+    setUserSavings(expenseTotals.savings)
     const expensePercentages = calculateThresholdPercentage(
       expenseTotals,
       userBudgetSummary["total_income"]

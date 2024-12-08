@@ -35,7 +35,11 @@ This API returns the annual and quarterly earnings (EPS) for the company of inte
             - a low P/E could suggest a potentially undervalued stock
             - high p/e  around 20-25, ->  P/E ratio of 25, which is above the S&P average, trades at 25 times its earnings
             -low  - lower than high ^^ 
-            - base projected earnings on SAVINGS not disposable income: already accumulated money
+            - base projected earnings on SAVINGS (show varying returns based on percentage of savings invested? -> is to keep 30-40% in savings and invest the rest
+            - conservative < 15%, moderate < 30%, aggresive high 50-60%) not disposable income: already accumulated money
+
+      discalimer -> if have emergency fund set up!!
+https://www.sarwa.co/blog/how-much-percentage-of-savings-should-you-invest
 */
 
 async function fetchTickerEPS (ticker) {

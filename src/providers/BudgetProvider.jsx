@@ -14,6 +14,7 @@ export default function BudgetProvider({ children }) {
 
   const [userTransactions, setUserTransactions] = useState([]);
   const [userBudgetSummary, setUserBudgetSummary] = useState({});
+  const [userSavings, setUserSavings] = useState(0)
 
   const [userCategoryExpenses, setUserCategoryExpenses] = useState({});
 
@@ -49,7 +50,9 @@ export default function BudgetProvider({ children }) {
         userBudgetSummary,
         setUserBudgetSummary,
         userCategoryExpenses,
-        setUserCategoryExpenses
+        setUserCategoryExpenses,
+        userSavings, 
+        setUserSavings
       }}
     >{
         userAuth.authToken ?
