@@ -1,6 +1,7 @@
 .authPage {
   height: 100vh;
   display: grid;
+  grid-template-rows: 28vh 60vh;
 
   &_forms {
     max-height: 60vh;

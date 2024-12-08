@@ -3,9 +3,9 @@ import AppHeader from "../appHeader/AppHeader.jsx";
 import { 
     FaWallet,           
     FaChartLine,        
-    FaChartBar         
+    FaChartBar , FaInfoCircle,    FaCode     
 } from "react-icons/fa";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaGithub,    } from "react-icons/fa6";
 import "./LandingPage.scss";
 
 export default function LandingPage() {
@@ -43,11 +43,18 @@ export default function LandingPage() {
 
       <section className= "landingPage_content_right">
         <div className="landingPage_content_right_about">
-        <h3>About</h3>
-        <p>A comprehensive financial management application designed to help users track expenses, analyze spending patterns, and make informed investment decisions through real-time market data.</p>
+          <FaInfoCircle />
+          <div className="landingPage_content_right_text">
+          <h3>About</h3>
+          <p>A comprehensive financial management application designed to help users track expenses, analyze spending patterns, and make informed investment decisions through real-time market data.</p>
+          </div>
+          
+        
         </div>
 
         <div className="landingPage_content_right_tech">
+        <FaCode />
+        <div className="landingPage_content_right_text">
           <h3>Technology</h3>
           <li>React</li>
           <li>Node.js</li>
@@ -55,20 +62,23 @@ export default function LandingPage() {
           <li>Chart.js</li>
           <li>Polygon.io API</li>
           <li>Alpha Vantage API</li>
+          </div>
         </div>
 
         <div className="landingPage_content_right_links">
+        <FaGithub />
+        <div className="landingPage_content_right_text">
           <h3>Repositories</h3>
-          <li><a href="[your-github-repo]" target="_blank">
-        <FaGithub /> Front end repo
+          <li><a href="https://github.com/DestinyJoyner/iCapital-Budget-FE?tab=readme-ov-file" target="_blank">
+       Frontend repo
       </a></li>
           <li>
-          <a href="[your-github-repo]" target="_blank">
-          <FaGithub />  Back end repo
+          <a href="https://github.com/DestinyJoyner/iCapital-Budget-BE" target="_blank">
+            Backend repo
       </a>
           </li>
         
-       
+          </div>
         </div>
 
         
