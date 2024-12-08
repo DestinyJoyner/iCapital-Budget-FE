@@ -90,17 +90,15 @@ const [numberOfShares, setNumberOfShares] = useState(0)
   function handleSavingsRadioButtons(e) {
     const value = e.target.value;
     const id = e.target.id;
+    
     setSavingsPercentage(value);
     setSavingsPercentAdvice(savingsPercentAdviceObj[id]);
     const PERatio = calculatePERatio();
     setStockPERatio(PERatio);
-    const userReturns = returnsBasedOnSavingsPercentage(savingsPercentage);
+    // pass e.target.value directly to prevent delay in updating state-> debugged
+    const userReturns = returnsBasedOnSavingsPercentage(value);
     setProjectedEarnings(userReturns);
-    // if (amountInvesting < sharePrice) {
-    //   setAffordShare(false);
-    // } else {
-    //   setAffordShare(true);
-    // }
+   
   }
 
   useEffect(() => {
@@ -111,6 +109,8 @@ const [numberOfShares, setNumberOfShares] = useState(0)
     const userReturns = returnsBasedOnSavingsPercentage(savingsPercentage);
     setProjectedEarnings(userReturns);
   }, []);
+
+  
 
   return (
     <div className="projectedEarnings app-card">
