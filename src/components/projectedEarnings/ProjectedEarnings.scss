@@ -1,0 +1,146 @@
+.projectedEarnings {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+  & > * {
+    padding: 1vh;
+  }
+  & H2 {
+    grid-column: span 2;
+  }
+
+  &_header {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    & h3 {
+      font-size: 26px;
+      font-weight: 400;
+    }
+  }
+
+  &_shares {
+    grid-row: 3;
+    grid-column: 2;
+    justify-content: space-between;
+   
+
+    &_breakdown {
+        display: flex;
+        align-items: center;
+        column-gap: .5vw;
+        // display: grid;
+        // grid-template-columns: 55% 45%;
+      &_header {
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 16px;
+        grid-column: 1;
+        // grid-row: 1;
+      }
+      &_price {
+        font-family: "Open Sans";
+        grid-column: 2;
+        // grid-row: 2/4;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    
+    }
+  }
+
+  &_savings_percentage {
+    // border: 1px solid red;
+    grid-column: 1;
+    grid-row: 3/5;
+    display: grid;
+    // row-gap: .5vh;
+    &_advice {
+      font-size: 12px;
+    }
+    & span {
+      font-family: "Open Sans";
+    }
+    &_radioButtons {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5vh;
+      // justify-content: space-evenly;
+      & label {
+        display: flex;
+        column-gap: 1vw;
+        & input {
+          height: 20px;
+          width: 20px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        & span {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  &_projections {
+    grid-row: 4;
+    grid-column: 2;
+
+    & h3 {
+        width: fit-content;
+        margin-bottom: 1vh;
+    }
+    &_positive, &_negative {
+        color: white;
+        padding: .5vw;
+        row-gap: 1vh;
+        border-radius: 10px;
+        max-width: 80%;
+        &_header {
+            display: flex;
+            column-gap:.5vw;
+            // padding-left: 3vw;
+            // font-weight: 
+        }
+    }
+    &_positive {
+       
+        background-color: green;
+      
+        
+    }
+    &_negative {
+        background-color:red;
+       
+    }
+    // align-items: center;
+    // text-align: center;
+    // display: grid;
+    // row-gap: 1vh;
+    // &_breakdown {
+    //     &_header {
+    //         font-family: "Inter";
+    //         font-weight: 400;
+    //     }
+    //     &_row {
+    //         display: flex;
+    //         column-gap: .4vw;
+    //     }
+
+    // }
+
+    &_affordable {
+      font-weight: 600;
+      font-size: 16px;
+      color: white;
+      // background-color: var(--icapital-blue);
+      background-color: green;
+      width: fit-content;
+      padding: 5px 15px;
+      justify-self: center;
+      border-radius: 10px;
+    }
+  }
+}
