@@ -4,6 +4,8 @@ import { useAuthProvider } from "../providers/AuthProvider.jsx";
 import { handleFormTextInput } from "../utils/authFormFunctions.js";
 import Loading from "../components/loading/Loading.jsx";
 import AppHeader from "../components/appHeader/AppHeader.jsx";
+import { FaCheckCircle } from "react-icons/fa";
+import { FaCircleXmark } from "react-icons/fa6";
 import "../styles/PasswordReset.scss";
 
 export default function PasswordReset() {
@@ -26,6 +28,8 @@ export default function PasswordReset() {
 
   const [passwordMatch, setPasswordMatch] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
+  const [passwordError, setPasswordError] = useState(null)
 
   function handleEmailSubmit(e) {
     e.preventDefault();
@@ -73,6 +77,12 @@ export default function PasswordReset() {
       })
       .catch((err) => {
         setLoading(false);
+        if(err.response?.data?.errors){
+          setPasswordError(err.response.data.errors[0].msg)
+        }
+        else {
+          setPasswordError("An unexpected Error has occured. Try again")
+        }
         console.log("password change error", err);
       });
   }
@@ -96,6 +106,12 @@ export default function PasswordReset() {
       if (password["new_password"] === password["confirm_password"]) {
         setPasswordMatch(true);
       }
+      else {
+        setPasswordMatch(false)
+      }
+    }
+    else {
+      setPasswordMatch(false)
     }
   }, [password["new_password"], password["confirm_password"]]);
 
@@ -133,28 +149,39 @@ export default function PasswordReset() {
         >
           <h2>Create New Password</h2>
           <label>
+            <div className = "password_container">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id={"new_password"}
               value={password["new_password"]}
               onChange={(e) => handleFormTextInput(e, password, setPassword)}
             />
+            <button className="password_show"
+            type="button"
+            onClick={(e) => {
+              e.preventDefault()
+              setShowPassword(!showPassword)}}>{showPassword ? "Hide" : "Show"}</button>
+            </div>
+           
             <span>New Password</span>
+            <p className="helperText">8+ chars: upper, lower, number, symbol</p>
           </label>
 
           <label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id={"confirm_password"}
               value={password["confirm_password"]}
               onChange={(e) => handleFormTextInput(e, password, setPassword)}
             />
             <span>Confirm New Password</span>
           </label>
-          <span>
-            {passwordMatch ? "Passwords Match" : "Passwords don't match"}
+          <span className="password_match">
+            {passwordMatch ? <span><FaCheckCircle color={"green"} /> Passwords Match  </span>: <span> <FaCircleXmark color={"red"} /> Passwords don't match </span>}
           </span>
+          {passwordError && <span className="registration_form_error">{passwordError}</span>}
           {passwordMatch && <input type="submit" disabled={loading} />}
+          
           {loading && <Loading />}
         </form>
       ) : (

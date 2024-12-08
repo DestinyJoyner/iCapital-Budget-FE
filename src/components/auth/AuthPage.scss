@@ -1,9 +1,10 @@
 .authPage {
   height: 100vh;
   display: grid;
+  grid-template-rows: 28vh 60vh;
 
   &_forms {
-    max-height: 50vh;
+    max-height: 60vh;
     display: flex;
     justify-self: center;
     column-gap: 2.5vw;
