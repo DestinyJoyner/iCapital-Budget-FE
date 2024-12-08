@@ -1,5 +1,6 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { useAuthProvider } from "./AuthProvider.jsx";
+// import StockAPIProvider from "./StockAPIProvider.jsx"
 import CategoryProvider from "./CategoryProvider.jsx";
 import Loading from "../components/loading/Loading.jsx"
 
@@ -13,6 +14,7 @@ export default function BudgetProvider({ children }) {
 
   const [userTransactions, setUserTransactions] = useState([]);
   const [userBudgetSummary, setUserBudgetSummary] = useState({});
+  const [userSavings, setUserSavings] = useState(0)
 
   const [userCategoryExpenses, setUserCategoryExpenses] = useState({});
 
@@ -48,12 +50,16 @@ export default function BudgetProvider({ children }) {
         userBudgetSummary,
         setUserBudgetSummary,
         userCategoryExpenses,
-        setUserCategoryExpenses
+        setUserCategoryExpenses,
+        userSavings, 
+        setUserSavings
       }}
     >{
-        userAuth.authToken ? <CategoryProvider>
+        userAuth.authToken ?
+          <CategoryProvider>
         {children}
-        </CategoryProvider> : <Loading />
+        </CategoryProvider>
+         : <Loading />
     }
       
     </BudgetData.Provider>

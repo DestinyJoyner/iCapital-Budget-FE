@@ -38,7 +38,7 @@ export default function RegistrationForm() {
         login: registerForm,
       })
       .then(({ data }) => {
-        console.log("res registration", data);
+        // console.log("res registration", data);
         const { email, first_name, id, is_verified } = data;
 
         // setVerificationToken(verification_token)
@@ -50,6 +50,7 @@ export default function RegistrationForm() {
           is_verified,
         });
         localStorage.setItem("icapital_user_email", email);
+        localStorage.setItem("icapital_user_first_name", first_name)
 
         setTimeout(() => {
           navigate("/verification");

@@ -1,0 +1,158 @@
+.projectedEarnings {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  //   grid-template-rows: repeat(4, auto) 3vh;
+  row-gap: 0.5vh;
+  margin: 0 1vw;
+  padding: 0 1vw;
+
+  & h2 {
+    grid-column: span 2;
+    align-self: center;
+  }
+
+  &_header {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    &_savings {
+      font-size: 26px;
+      font-weight: 400;
+    }
+    &_select {
+      display: flex;
+      align-items: center;
+      column-gap: 1vw;
+      & svg {
+        height: 4em;
+        width: 4em;
+        margin-left: 1vw;
+      }
+      & label {
+        height: 100%;
+        display: grid;
+
+        & select {
+          width: 180px;
+          height: 28px;
+          border-radius: 10px;
+          text-align: center;
+          font-family: "Open Sans";
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  &_shares {
+    grid-row: 3;
+    grid-column: 2;
+    justify-content: space-between;
+
+    &_breakdown {
+      display: flex;
+      align-items: center;
+      column-gap: 0.5vw;
+      // display: grid;
+      // grid-template-columns: 55% 45%;
+      &_header {
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 16px;
+        grid-column: 1;
+        // grid-row: 1;
+      }
+      &_price {
+        font-family: "Open Sans";
+        grid-column: 2;
+        // grid-row: 2/4;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &_savings_percentage {
+    // border: 1px solid red;
+    grid-column: 1;
+    grid-row: 3/5;
+    display: grid;
+    // row-gap: .5vh;
+    &_advice {
+      font-size: 12px;
+      width: 90%;
+    }
+    & span {
+      font-family: "Open Sans";
+    }
+    &_radioButtons {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5vh;
+      // justify-content: space-evenly;
+      & label {
+        display: flex;
+        column-gap: 1vw;
+        & input {
+          height: 20px;
+          width: 20px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        & span {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  &_projections {
+    grid-row: 4;
+    grid-column: 2;
+    align-self: flex-end;
+
+    & h3 {
+      width: fit-content;
+      margin-bottom: 1vh;
+    }
+    &_positive,
+    &_negative {
+      color: white;
+      padding: 0.5vw;
+      row-gap: 1vh;
+      border-radius: 10px;
+      max-width: 80%;
+      &_header {
+        display: flex;
+        column-gap: 0.5vw;
+      }
+    }
+    &_positive {
+      background-color: green;
+    }
+    &_negative {
+      background-color: red;
+    }
+
+    &_affordable {
+      font-weight: 600;
+      font-size: 16px;
+      color: white;
+      // background-color: var(--icapital-blue);
+      background-color: green;
+      width: fit-content;
+      padding: 5px 15px;
+      justify-self: center;
+      border-radius: 10px;
+    }
+  }
+  .user_financial_report_subtext {
+    grid-column: span 2;
+    width: 96%;
+    padding-bottom: 1vh;
+  }
+}

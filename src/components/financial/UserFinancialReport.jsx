@@ -9,7 +9,8 @@ import {
 import "./UserFinancialReport.scss";
 
 export default function UserFinancialReport() {
-  const { userCategoryExpenses, userBudgetSummary } = useBudgetProvider();
+  const { userCategoryExpenses, userBudgetSummary,  
+    setUserSavings } = useBudgetProvider();
   const [thresholdPercentages, setThresholdPercentages] = useState({
     needs: 0,
     wants: 0,
@@ -24,6 +25,8 @@ export default function UserFinancialReport() {
   // calculate and set values
   useEffect(() => {
     const expenseTotals = calculateIncomeGroupTotals(userCategoryExpenses);
+    
+    setUserSavings(expenseTotals.savings)
     const expensePercentages = calculateThresholdPercentage(
       expenseTotals,
       userBudgetSummary["total_income"]
@@ -35,7 +38,7 @@ export default function UserFinancialReport() {
   }, [userBudgetSummary]);
 
   return (
-    <div className="user_financial_report app-card flex-column">
+    <div className="user_financial_report app-card ">
       <h2>Financial Report</h2>
 
       <FinancialReportCategory
@@ -63,6 +66,7 @@ export default function UserFinancialReport() {
         <br />
         <span>
           {" "}
+          {/* italic html element */}
           <em>
             {" "}
             -Elizabeth Warren, "All Your Worth: The Ultimate Lifetime Money
