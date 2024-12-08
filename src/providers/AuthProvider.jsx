@@ -12,7 +12,7 @@ export default function AuthProvider({ children }) {
 //   const authToken = localStorage.getItem("token");
   const userEmail = localStorage.getItem("icapital_user_email");
   const [userAuth, setUserAuth] = useState({
-    first_name: "",
+    first_name: localStorage.getItem("icapital_user_first_name") ||"",
     user_id: "",
     authToken: localStorage.getItem("token") || "",
     email: localStorage.getItem("icapital_user_email") || "",
