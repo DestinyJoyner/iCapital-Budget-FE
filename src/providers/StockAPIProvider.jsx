@@ -13,17 +13,17 @@ const [tickerClosingPrice, setTickerClosingPrice] = useState({})
 const [ticker, setTicker] = useState("AAPL")
 
 
-useEffect(() => {
-  async function getStockData () {
-    const closingPrice = await fetchStockData(ticker)
-    const eps = await fetchTickerEPS(ticker)
+// useEffect(() => {
+//   async function getStockData () {
+//     const closingPrice = await fetchStockData(ticker)
+//     const eps = await fetchTickerEPS(ticker)
 
-    setEarningsPerShare(eps)
-    setTickerClosingPrice(closingPrice)
-    // setTicker(closingPrice.ticker)
-  }
-  getStockData()
-}, [ticker])
+//     setEarningsPerShare(eps)
+//     setTickerClosingPrice(closingPrice)
+//     // setTicker(closingPrice.ticker)
+//   }
+//   getStockData()
+// }, [ticker])
   return (
     <StockAPIData.Provider value={{
       earningsPerShare,

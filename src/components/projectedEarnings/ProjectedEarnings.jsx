@@ -17,28 +17,43 @@ export default function ProjectedEarnings() {
   const {userSavings} = useBudgetProvider()
 
   const savingsPercentAdviceObj = {
-    conservative:"",
-    moderate: "",
-    aggressive: "",
-    disclaimer: ""
+    conservative:"conservative",
+    moderate: "moderate",
+    aggressive: "aggressive",
+    disclaimer: "make sure you have emergency fund"
   }
   const [savingsPercentage, setSavingsPercentage] = useState(".15")
   const [savingsPercentAdvice, setSavingsPercentAdvice] = useState(savingsPercentAdviceObj.conservative) 
 
+  const [projectedEarnings, setProjectedEarnings] = useState()
+  const [stockPERatio, setStockPERatio] = useState()
+
+//   if savings investment < cost of share, inform user b/c returns will 0 as they cant afford a share, so show share price and amount investing at each percentage!!!!!!
+const [sharePrice, setSharePrice] = useState(239.59)
+const [amountInvesting, setAmountInvesting] = useState()
+const [affordShare, setAffordShare] = useState(false)
+
   function calculatePERatio() {
-    const lastYearEps = earningsPerShare.annualEarnings[0].reportedEPS;
-    const lastClosingPrice =
-      tickerClosingPrice.results[tickerClosingPrice.results.length - 1].c;
+    // max api calls so temp default value
+    const lastYearEps = 9.25
+    // const lastYearEps = earningsPerShare.annualEarnings[0].reportedEPS;
+    // const lastClosingPrice =
+    //   tickerClosingPrice.results[tickerClosingPrice.results.length - 1].c;
+    const lastClosingPrice = 239.59
 
     // console.log(lastClosingPrice / lastYearEps)
     return lastClosingPrice / lastYearEps;
   }
 
   function returnsBasedOnSavingsPercentage (percentage) {
-    const investmentAmount = userSavings * percentage
-    const lastClosingPrice =
-      tickerClosingPrice.results[tickerClosingPrice.results.length - 1].c 
-      const lastYearEps = earningsPerShare.annualEarnings[0].reportedEPS;
+    const investmentAmount = userSavings * +percentage
+    setAmountInvesting(investmentAmount)
+    // const lastClosingPrice =
+    //   tickerClosingPrice.results[tickerClosingPrice.results.length - 1].c 
+
+    const lastClosingPrice = 239.59
+      const lastYearEps = 9.25
+    //   const lastYearEps = earningsPerShare.annualEarnings[0].reportedEPS;
     // how many shares?
     const amountOfShares = Math.floor(investmentAmount / lastClosingPrice)
 
@@ -53,13 +68,36 @@ export default function ProjectedEarnings() {
     const id = e.target.id
     setSavingsPercentage(value)
     setSavingsPercentAdvice(savingsPercentAdviceObj[id])
+    const PERatio = calculatePERatio()
+    setStockPERatio(PERatio)
+    const userReturns = returnsBasedOnSavingsPercentage(savingsPercentage)
+    setProjectedEarnings(userReturns)
+    if (amountInvesting < sharePrice){
+        setAffordShare(false)
+
+    }
+    else {
+        setAffordShare(true)
+    }
 
   }
 
+  useEffect(() => {
+    // calculate ticker p/e ratio
+    const PERatio = calculatePERatio()
+    setStockPERatio(PERatio)
+    // calculate projected returns
+    const userReturns = returnsBasedOnSavingsPercentage(savingsPercentage)
+    setProjectedEarnings(userReturns)
+
+  },[])
+
   return (
     <div className="projectedEarnings app-card">
-        <h2>Savings : ${userSavings}</h2>
-      <section className="projectedEarnings_ticker_selection">
+        {/* HEADER */}
+        <section className= "projectedEarnings_header">
+    <h2>Savings : ${userSavings}</h2>
+    <div className="projectedEarnings_ticker_selection">
         <select value={ticker} onChange={(e) => setTicker(e.target.value)}>
           {stockTickers.map(({ ticker, name }) => (
             <option key={uuidv4()} value={ticker}>
@@ -67,10 +105,23 @@ export default function ProjectedEarnings() {
             </option>
           ))}
         </select>
-      </section>
+      </div>
+        </section>
+        
+        {/* SHARE PRICE AND AMOUNT USER INVESTING */}
+        <section className="projectedEarnings_amounts" >
+        <p>
+            <span>Share Price : {sharePrice}</span>
+            <span>Amount Investing; {amountInvesting}</span>
+            <span>{!affordShare ? "You cannot afford to purchase this stock with your current savings." : null}</span>
+        </p>
+        <span>{savingsPercentAdvice}</span>
+        </section>
+        
+     {/* RADIO BUTTONS */}
 
       <section className="projectedEarnings_savings_percentage">
-        {/* radioButtons */}
+        
         <label>
           <span>Savings Percentage to Invest</span>
           <div className="projectedEarnings_savings_percentage_radioButtons">
@@ -101,6 +152,8 @@ export default function ProjectedEarnings() {
           </div>
         </label>
       </section>
+
+      
     </div>
   );
 }
