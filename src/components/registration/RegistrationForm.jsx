@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthProvider } from "../../providers/AuthProvider.jsx";
 import Loading from "../loading/Loading.jsx";
+import PasswordInput from "../passwordInput/PasswordInput.jsx";
 import "./RegistrationForm.scss";
 
 export default function RegistrationForm() {
@@ -20,6 +21,7 @@ export default function RegistrationForm() {
   const [loading, setLoading] = useState(false);
   // registration error handling
   const [registrationError, setRegistrationError] = useState(null);
+  const [passwordMatch, setPasswordMatch] = useState(false);
 
   function handleFormInput(e) {
     const value = e.target.value;
@@ -36,7 +38,7 @@ export default function RegistrationForm() {
         login: registerForm,
       })
       .then(({ data }) => {
-        console.log("res registration", data)
+        console.log("res registration", data);
         const { email, first_name, id, is_verified } = data;
 
         // setVerificationToken(verification_token)
@@ -60,13 +62,29 @@ export default function RegistrationForm() {
       })
       .catch((err) => {
         console.log("registration error", err);
-        const errorMessage = typeof err.response?.data.error === 'string' 
-    ? err.response.data.error 
-    : "An unexpected error occurred";
+        const errorMessage = err.response?.data?.errors
+          ? err.response.data.errors[0].msg
+          : err.response?.data?.error
+          ? err.response?.data?.error
+          : "An unexpected error occurred";
         setRegistrationError(errorMessage);
         setLoading(false);
       });
   }
+
+  useEffect(() => {
+    const password1 = registerForm["password"];
+    const password2 = registerForm["confirm_password"];
+    if (password1 && password2) {
+      if (password1 === password2) {
+        setPasswordMatch(true);
+      } else {
+        setPasswordMatch(false);
+      }
+    } else {
+      setPasswordMatch(false);
+    }
+  }, [registerForm["password"], registerForm["confirm_password"]]);
 
   return (
     <form
@@ -80,6 +98,7 @@ export default function RegistrationForm() {
           value={registerForm["first_name"]}
           id="first_name"
           onChange={(event) => handleFormInput(event)}
+          required
         />
         <span>First Name</span>
       </label>
@@ -89,31 +108,23 @@ export default function RegistrationForm() {
           value={registerForm["email"]}
           id="email"
           onChange={(event) => handleFormInput(event)}
+          required
         />
         <span>Email</span>
       </label>
 
-      <label>
-        <input
-          type="password"
-          value={registerForm["password"]}
-          id="password"
-          onChange={(event) => handleFormInput(event)}
-        />
-        <span>Password</span>
-      </label>
+      <PasswordInput
+        password={"password"}
+        confirmPassword={"confirm_password"}
+        stateVar={registerForm}
+        setFunction={setRegisterForm}
+        passwordMatch={passwordMatch}
+        setPasswordMatch={setPasswordMatch}
+      />
 
-      <label>
-        <input
-          type="password"
-          value={registerForm["confirm_password"]}
-          id="confirm_password"
-          onChange={(event) => handleFormInput(event)}
-        />
-        <span>Confirm Password</span>
-      </label>
-
-      <input type="submit" value="Register" disabled={loading} />
+      {passwordMatch && (
+        <input type="submit" value="Register" disabled={loading} />
+      )}
 
       {loading && <Loading />}
       {registrationError && (

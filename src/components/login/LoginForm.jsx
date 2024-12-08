@@ -28,7 +28,16 @@ export default function LoginForm() {
         setUserAuth({ ...userAuth, user_id: data.user_id});
         navigate("/passcode");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {console.log(err)
+        setLoading(false)
+        if(err.response?.data?.error){
+          setLoginError(err.response.data.error)
+        }
+        else {
+          setLoginError("An unexpected error has occured")
+        }
+        
+      });
 
     /*  axios
       .post(`${API}/auth/login`, {
