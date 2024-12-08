@@ -2,11 +2,15 @@
   height: 100%;
   display: grid;
   grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(4, auto) 3vh;
+  row-gap: .5vh;
+//   align-items: center;
 
   & > * {
-    padding: 1vh;
+    padding: 0 1vh;
+    // height: 100%;
   }
-  & H2 {
+  & h2 {
     grid-column: span 2;
   }
 
@@ -14,10 +18,45 @@
     grid-column: span 2;
     display: grid;
     grid-template-columns: 50% 50%;
-    & h3 {
+    &_savings {
       font-size: 26px;
       font-weight: 400;
     }
+    &_select {
+        display:flex;
+        align-items:center;
+        // padding: 1vw;
+        // height: 100%;
+        // width: 100%;
+        column-gap: 1vw;
+        & svg  {
+            height: 3em;
+            width: 3em;
+            // margin-left: 1vw;
+        }
+        & label {
+            height: 100%;
+            display:grid;
+            & h3 {
+                
+            
+            }
+          
+            & select {
+                
+                width: 180px ;
+                height: 28px;
+                border-radius: 10px;
+                text-align: center;
+                font-family: "Open Sans";
+                &:hover {
+                    cursor:pointer;
+                }
+            }
+        }
+    }
+    
+   
   }
 
   &_shares {
@@ -87,6 +126,7 @@
   &_projections {
     grid-row: 4;
     grid-column: 2;
+    align-self:flex-end;
 
     & h3 {
         width: fit-content;
@@ -142,5 +182,10 @@
       justify-self: center;
       border-radius: 10px;
     }
+  }
+  .user_financial_report_subtext {
+    grid-column: span 2;
+    width: 96%;
+    
   }
 }

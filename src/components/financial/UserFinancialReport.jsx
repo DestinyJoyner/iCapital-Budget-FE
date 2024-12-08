@@ -38,7 +38,7 @@ export default function UserFinancialReport() {
   }, [userBudgetSummary]);
 
   return (
-    <div className="user_financial_report app-card flex-column">
+    <div className="user_financial_report app-card ">
       <h2>Financial Report</h2>
 
       <FinancialReportCategory
@@ -66,6 +66,7 @@ export default function UserFinancialReport() {
         <br />
         <span>
           {" "}
+          {/* italic html element */}
           <em>
             {" "}
             -Elizabeth Warren, "All Your Worth: The Ultimate Lifetime Money

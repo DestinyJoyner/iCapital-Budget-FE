@@ -1,6 +1,9 @@
 .user_financial_report {
+     display: grid;
+     grid-template-rows: 8% repeat(3, 25%) 8%;
      row-gap: 1vh;
-     min-height:100%;
+     // justify-content: space-evenly;
+     // min-height:100%;
      max-height:100%;
     
      &_subtext {
@@ -8,6 +11,6 @@
           color: rgba(0, 0, 0, 0.5);
           font-size: 9px;
           margin-top:auto;
-          padding-bottom:4vh;
+          // padding-bottom:4vh;
   }
 }

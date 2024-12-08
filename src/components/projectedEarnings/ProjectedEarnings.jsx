@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useStockAPIProvider } from "../../providers/StockAPIProvider.jsx";
 import { useBudgetProvider } from "../../providers/BudgetProvider.jsx";
 import { stockTickers } from "../../utils/stockTickers.js";
+import { tickerIcons } from "../../utils/tickerIcons.js";
 import { v4 as uuidv4 } from "uuid";
 import "./ProjectedEarnings.scss";
 
@@ -116,10 +117,10 @@ export default function ProjectedEarnings() {
       <h2>Investment Returns Estimator</h2>
       {/* HEADER */}
       <section className="projectedEarnings_header">
-        <h3>Total Savings : ${userSavings}</h3>
-        <div className="projectedEarnings_ticker_selection">
-          <label>
-            <span>Stock Selection</span>
+        <h3 className="projectedEarnings_header_savings">Total Savings : ${userSavings}</h3>
+        <div className="projectedEarnings_header_select">
+          <label className="">
+            <h3>Stock Selection</h3>
             <select value={ticker} onChange={(e) => setTicker(e.target.value)}>
               {stockTickers.map(({ ticker, name }) => (
                 <option key={uuidv4()} value={ticker}>
@@ -127,7 +128,9 @@ export default function ProjectedEarnings() {
                 </option>
               ))}
             </select>
+            
           </label>
+          {React.createElement(tickerIcons[ticker])}
         </div>
       </section>
 
@@ -244,6 +247,7 @@ export default function ProjectedEarnings() {
           </div>
 }
       </section>
+      <span className="user_financial_report_subtext subtext-font">{savingsPercentAdviceObj.disclaimer}</span>
     </div>
   );
 }
