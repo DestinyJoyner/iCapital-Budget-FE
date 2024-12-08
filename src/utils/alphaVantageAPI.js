@@ -3,7 +3,7 @@ const VITE_ALPHA_VANTAGE_API_KEY= import.meta.env.VITE_ALPHA_VANTAGE_API_KEY
 
 /* 
 -(no eps data returned from free teir of polygon -io)
-    APLHAVANTAGE API -> 
+    APLHAVANTAGE API -> 25 req. per day -> look for alt for eps!!!!
         -Has endpoint for Earnings per share -> Earnings
 This API returns the annual and quarterly earnings (EPS) for the company of interest. Quarterly data also includes analyst estimates and surprise metrics.
 -> first obj in array shows past years reported EPS -> {
@@ -52,5 +52,5 @@ return resp
 }
 
 export {
-    fetchTickerEPS
+    // fetchTickerEPS
 }

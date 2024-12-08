@@ -2,16 +2,14 @@
   height: 100%;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: repeat(4, auto) 3vh;
-  row-gap: .5vh;
-//   align-items: center;
+  //   grid-template-rows: repeat(4, auto) 3vh;
+  row-gap: 0.5vh;
+  margin: 0 1vw;
+  padding: 0 1vw;
 
-  & > * {
-    padding: 0 1vh;
-    // height: 100%;
-  }
   & h2 {
     grid-column: span 2;
+    align-self: center;
   }
 
   &_header {
@@ -23,54 +21,43 @@
       font-weight: 400;
     }
     &_select {
-        display:flex;
-        align-items:center;
-        // padding: 1vw;
-        // height: 100%;
-        // width: 100%;
-        column-gap: 1vw;
-        & svg  {
-            height: 3em;
-            width: 3em;
-            // margin-left: 1vw;
+      display: flex;
+      align-items: center;
+      column-gap: 1vw;
+      & svg {
+        height: 4em;
+        width: 4em;
+        margin-left: 1vw;
+      }
+      & label {
+        height: 100%;
+        display: grid;
+
+        & select {
+          width: 180px;
+          height: 28px;
+          border-radius: 10px;
+          text-align: center;
+          font-family: "Open Sans";
+          &:hover {
+            cursor: pointer;
+          }
         }
-        & label {
-            height: 100%;
-            display:grid;
-            & h3 {
-                
-            
-            }
-          
-            & select {
-                
-                width: 180px ;
-                height: 28px;
-                border-radius: 10px;
-                text-align: center;
-                font-family: "Open Sans";
-                &:hover {
-                    cursor:pointer;
-                }
-            }
-        }
+      }
     }
-    
-   
   }
 
   &_shares {
     grid-row: 3;
     grid-column: 2;
     justify-content: space-between;
-   
 
     &_breakdown {
-        display: flex;
-        align-items: center;
-        column-gap: .5vw;
-        // display: grid;
-        // grid-template-columns: 55% 45%;
+      display: flex;
+      align-items: center;
+      column-gap: 0.5vw;
+      // display: grid;
+      // grid-template-columns: 55% 45%;
       &_header {
         font-family: "Inter";
         font-weight: 400;
@@ -85,7 +72,6 @@
         font-size: 16px;
         font-weight: 600;
       }
-    
     }
   }
 
@@ -97,6 +83,7 @@
     // row-gap: .5vh;
     &_advice {
       font-size: 12px;
+      width: 90%;
     }
     & span {
       font-family: "Open Sans";
@@ -126,50 +113,30 @@
   &_projections {
     grid-row: 4;
     grid-column: 2;
-    align-self:flex-end;
+    align-self: flex-end;
 
     & h3 {
-        width: fit-content;
-        margin-bottom: 1vh;
+      width: fit-content;
+      margin-bottom: 1vh;
     }
-    &_positive, &_negative {
-        color: white;
-        padding: .5vw;
-        row-gap: 1vh;
-        border-radius: 10px;
-        max-width: 80%;
-        &_header {
-            display: flex;
-            column-gap:.5vw;
-            // padding-left: 3vw;
-            // font-weight: 
-        }
+    &_positive,
+    &_negative {
+      color: white;
+      padding: 0.5vw;
+      row-gap: 1vh;
+      border-radius: 10px;
+      max-width: 80%;
+      &_header {
+        display: flex;
+        column-gap: 0.5vw;
+      }
     }
     &_positive {
-       
-        background-color: green;
-      
-        
+      background-color: green;
     }
     &_negative {
-        background-color:red;
-       
+      background-color: red;
     }
-    // align-items: center;
-    // text-align: center;
-    // display: grid;
-    // row-gap: 1vh;
-    // &_breakdown {
-    //     &_header {
-    //         font-family: "Inter";
-    //         font-weight: 400;
-    //     }
-    //     &_row {
-    //         display: flex;
-    //         column-gap: .4vw;
-    //     }
-
-    // }
 
     &_affordable {
       font-weight: 600;
@@ -186,6 +153,6 @@
   .user_financial_report_subtext {
     grid-column: span 2;
     width: 96%;
-    
+    padding-bottom: 1vh;
   }
 }

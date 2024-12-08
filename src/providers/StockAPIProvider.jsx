@@ -1,6 +1,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
-import {fetchTickerEPS} from "../utils/alphaVantageAPI.js"
-import {fetchStockData} from "../utils/polygonAPI.js"
+// import {fetchTickerEPS} from "../utils/alphaVantageAPI.js"
+import {FMPFetchStockData} from "../utils/financialModelingPrepAPI.js"
+// import {fetchStockData} from "../utils/polygonAPI.js"
 
 export const StockAPIData = createContext();
 export function useStockAPIProvider() {
@@ -8,22 +9,21 @@ export function useStockAPIProvider() {
 }
 
 export default function StockAPIProvider ({children}){
-const [earningsPerShare, setEarningsPerShare ] = useState({})
-const [tickerClosingPrice, setTickerClosingPrice] = useState({})
+const [earningsPerShare, setEarningsPerShare ] = useState(null)
+const [tickerClosingPrice, setTickerClosingPrice] = useState(null)
 const [ticker, setTicker] = useState("AAPL")
 
 
-// useEffect(() => {
-//   async function getStockData () {
-//     const closingPrice = await fetchStockData(ticker)
-//     const eps = await fetchTickerEPS(ticker)
+useEffect(() => {
+  async function getStockData () {
+   const stockData = await FMPFetchStockData(ticker)
 
-//     setEarningsPerShare(eps)
-//     setTickerClosingPrice(closingPrice)
-//     // setTicker(closingPrice.ticker)
-//   }
-//   getStockData()
-// }, [ticker])
+    setEarningsPerShare(stockData["earnings_per_share"])
+    setTickerClosingPrice(stockData["current_price"])
+    // setTicker(closingPrice.ticker)
+  }
+  getStockData()
+}, [ticker])
   return (
     <StockAPIData.Provider value={{
       earningsPerShare,

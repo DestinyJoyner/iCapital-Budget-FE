@@ -32,12 +32,12 @@ export default function ProjectedEarnings() {
     savingsPercentAdviceObj.conservative
   );
 
-  const [projectedEarnings, setProjectedEarnings] = useState();
-  const [stockPERatio, setStockPERatio] = useState();
+  const [projectedEarnings, setProjectedEarnings] = useState(0);
+  const [stockPERatio, setStockPERatio] = useState(0);
 
   //   if savings investment < cost of share, inform user b/c returns will 0 as they cant afford a share, so show share price and amount investing at each percentage!!!!!!
-  const [sharePrice, setSharePrice] = useState(239.59);
-  const [amountInvesting, setAmountInvesting] = useState();
+  //   const [sharePrice, setSharePrice] = useState(null);
+  const [amountInvesting, setAmountInvesting] = useState(0);
   //   iff user cant afford share
   const [savingsNeededInvest, setSavingsNeededToInvest] = useState(null);
   //   if user can afford shares
@@ -45,48 +45,32 @@ export default function ProjectedEarnings() {
   const [affordShare, setAffordShare] = useState(false);
 
   function calculatePERatio() {
-    // max api calls so temp default value
-    const lastYearEps = 9.25;
-    // const lastYearEps = earningsPerShare.annualEarnings[0].reportedEPS;
-    // const lastClosingPrice =
-    //   tickerClosingPrice.results[tickerClosingPrice.results.length - 1].c;
-    const lastClosingPrice = 339.59;
-
-    // console.log(lastClosingPrice / lastYearEps)
-    return lastClosingPrice / lastYearEps;
+    return tickerClosingPrice / earningsPerShare;
   }
 
   function returnsBasedOnSavingsPercentage(percentage) {
     const investmentAmount = userSavings * +percentage;
     setAmountInvesting(investmentAmount);
-    // const lastClosingPrice =
-    //   tickerClosingPrice.results[tickerClosingPrice.results.length - 1].c
-
-    const lastClosingPrice = 339.59;
-    // 239.59 25.27
-    setSharePrice(lastClosingPrice);
-    const lastYearEps = 9.25;
-    //   const lastYearEps = earningsPerShare.annualEarnings[0].reportedEPS;
 
     // check if user can afford a share -> if cant calculate how much more savings they need....
-    if (investmentAmount < lastClosingPrice) {
+    if (investmentAmount < tickerClosingPrice) {
       setAffordShare(false);
-      setNumberOfShares(0)
+      setNumberOfShares(0);
       // const savingsNeeded = lastClosingPrice - investmentAmount
       // amount in savings * percentage needs to eaqual sharePrice in order for user to afford it
-      const totalSavingsNeeded = lastClosingPrice / +percentage;
+      const totalSavingsNeeded = tickerClosingPrice / +percentage;
       setSavingsNeededToInvest(totalSavingsNeeded.toFixed(2));
       return;
     } else {
       setAffordShare(true);
       // how many shares?
-      const amountOfShares = Math.floor(investmentAmount / lastClosingPrice);
-      console.log()
+      const amountOfShares = Math.floor(investmentAmount / tickerClosingPrice);
+
       setNumberOfShares(amountOfShares);
 
-      const projectedEarnings = amountOfShares * lastYearEps;
+      const projectedEarnings = amountOfShares * earningsPerShare;
 
-      return projectedEarnings;
+      return projectedEarnings.toFixed(2);
     }
   }
 
@@ -110,14 +94,16 @@ export default function ProjectedEarnings() {
     // calculate projected returns
     const userReturns = returnsBasedOnSavingsPercentage(savingsPercentage);
     setProjectedEarnings(userReturns);
-  }, []);
+  }, [ticker]);
 
   return (
     <div className="projectedEarnings app-card">
       <h2>Investment Returns Estimator</h2>
       {/* HEADER */}
       <section className="projectedEarnings_header">
-        <h3 className="projectedEarnings_header_savings">Total Savings : ${userSavings}</h3>
+        <h3 className="projectedEarnings_header_savings">
+          Total Savings : ${userSavings}
+        </h3>
         <div className="projectedEarnings_header_select">
           <label className="">
             <h3>Stock Selection</h3>
@@ -128,7 +114,6 @@ export default function ProjectedEarnings() {
                 </option>
               ))}
             </select>
-            
           </label>
           {React.createElement(tickerIcons[ticker])}
         </div>
@@ -142,7 +127,7 @@ export default function ProjectedEarnings() {
           </span>
           <br />
           <span className="projectedEarnings_shares_breakdown_price">
-            ${sharePrice}
+            ${tickerClosingPrice}
           </span>
         </div>
 
@@ -216,38 +201,44 @@ export default function ProjectedEarnings() {
 
       {/* SHARE PRICE AND AMOUNT USER INVESTING */}
       <section className="projectedEarnings_projections">
-       <h3>Projected Earnings</h3>
-          {!affordShare
-            ?
-            <div className="projectedEarnings_projections_negative flex-column">
-                {/* <span>You cannot afford to purchase this stock with your current savings.</span> */}
-                <span className="projectedEarnings_projections_negative_header">
-                <span className="projectedEarnings_shares_breakdown_header">Savings Required:</span> 
-                <span className="projectedEarnings_shares_breakdown_price">${savingsNeededInvest}</span>
-                </span>
-                
-            </div>
-            // <span className="projectedEarnings_projections_negative">You cannot afford to purchase this stock with your current savings. You need ${savingsNeededInvest} in total savings to invest ${
-            //     savingsPercentage * 100
-            //   }% in one share of this stock</span>
-            : <div className="projectedEarnings_projections_positive flex-column">
-                <span className="projectedEarnings_projections_positive_header">
-            <span className="projectedEarnings_shares_breakdown_header">Annual Earnings:</span> 
-            <span className="projectedEarnings_shares_breakdown_price">${projectedEarnings}</span>
-          </span>
-    
-          <span className="projectedEarnings_projections_positive_header">
-            <span className="projectedEarnings_shares_breakdown_header">Monthly Earnings:</span> 
-            <span className="projectedEarnings_shares_breakdown_price">${(
-                projectedEarnings / 12
-              ).toFixed(2)}</span>
+        <h3>Projected Earnings</h3>
+        {!affordShare ? (
+          <div className="projectedEarnings_projections_negative flex-column">
+            {/* <span>You cannot afford to purchase this stock with your current savings.</span> */}
+            <span className="projectedEarnings_projections_negative_header">
+              <span className="projectedEarnings_shares_breakdown_header">
+                Savings Required:
               </span>
-         
-         
+              <span className="projectedEarnings_shares_breakdown_price">
+                ${savingsNeededInvest}
+              </span>
+            </span>
           </div>
-}
+        ) : (
+          <div className="projectedEarnings_projections_positive flex-column">
+            <span className="projectedEarnings_projections_positive_header">
+              <span className="projectedEarnings_shares_breakdown_header">
+                Annual Earnings:
+              </span>
+              <span className="projectedEarnings_shares_breakdown_price">
+                ${projectedEarnings}
+              </span>
+            </span>
+
+            <span className="projectedEarnings_projections_positive_header">
+              <span className="projectedEarnings_shares_breakdown_header">
+                Monthly Earnings:
+              </span>
+              <span className="projectedEarnings_shares_breakdown_price">
+                ${(projectedEarnings / 12).toFixed(2)}
+              </span>
+            </span>
+          </div>
+        )}
       </section>
-      <span className="user_financial_report_subtext subtext-font">{savingsPercentAdviceObj.disclaimer}</span>
+      <span className="user_financial_report_subtext subtext-font">
+        {savingsPercentAdviceObj.disclaimer}
+      </span>
     </div>
   );
 }
