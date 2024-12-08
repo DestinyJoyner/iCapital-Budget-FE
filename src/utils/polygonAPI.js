@@ -33,7 +33,7 @@ async function fetchStockData(ticker) {
     }
 }).then(({data}) => data).catch(err => {
     console.log("polygon fetch error", err)
-    return err})
+    return null})
 
     return resp
 }

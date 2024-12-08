@@ -1,5 +1,6 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { useAuthProvider } from "./AuthProvider.jsx";
+// import StockAPIProvider from "./StockAPIProvider.jsx"
 import CategoryProvider from "./CategoryProvider.jsx";
 import Loading from "../components/loading/Loading.jsx"
 
@@ -51,9 +52,11 @@ export default function BudgetProvider({ children }) {
         setUserCategoryExpenses
       }}
     >{
-        userAuth.authToken ? <CategoryProvider>
+        userAuth.authToken ?
+          <CategoryProvider>
         {children}
-        </CategoryProvider> : <Loading />
+        </CategoryProvider>
+         : <Loading />
     }
       
     </BudgetData.Provider>
