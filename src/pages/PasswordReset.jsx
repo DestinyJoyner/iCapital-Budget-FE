@@ -121,10 +121,11 @@ export default function PasswordReset() {
       {!verificationToken ? (
         !resetLinkSent ? (
           <form
-            className="password_reset_form authPage_forms flex-column-center"
+            className="password_reset_emailForm authPage_forms flex-column-center"
             onSubmit={(e) => handleEmailSubmit(e)}
           >
-            <h2>Enter Email Address</h2>
+            <h2>Password Reset Request</h2>
+            <h4>Enter Email Address</h4>
             <label>
               <input
                 type="email"
@@ -136,11 +137,15 @@ export default function PasswordReset() {
             {loading && <Loading />}
           </form>
         ) : (
-          <>
-            <h2 className="password_reset_checkEmail">
+          <section className="password_reset_emailCheck flex-column-center">
+            <h2>
               Check Email for Password Reset Link
             </h2>
-          </>
+            <span className="subtext-font">
+    Please check your inbox for the password reset link. If you don't see it, be sure to check your spam or junk folder.
+  </span>
+  <span className="password_reset_emailCheck_note subtext-font">This secure process helps protect your account. The reset link will expire in 1hr for security purposes</span>
+          </section>
         )
       ) : verificationToken && tokenVerified ? (
         <form
@@ -177,7 +182,7 @@ export default function PasswordReset() {
             <span>Confirm New Password</span>
           </label>
           <span className="password_match">
-            {passwordMatch ? <span><FaCheckCircle color={"green"} /> Passwords Match  </span>: <span> <FaCircleXmark color={"red"} /> Passwords don't match </span>}
+            {passwordMatch ? <span><FaCheckCircle color={"green"} /> Passwords Match  </span>: <span> <FaCircleXmark color={"red"} /> Passwords don't meet requirements</span>}
           </span>
           {passwordError && <span className="registration_form_error">{passwordError}</span>}
           {passwordMatch && <input type="submit" disabled={loading} />}

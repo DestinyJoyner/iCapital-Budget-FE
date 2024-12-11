@@ -10,7 +10,14 @@
   &_form {
     display: grid;
     row-gap: 2.5vh;
-    width: fit-content;
+    // max-width: 90%;
+    margin: 0 auto;
+    justify-items:center;
+    &>*{
+     text-align:center;
+     width: 300px;
+
+    }
 
     &_submitButton {
       // border:1px solid red;
@@ -35,7 +42,8 @@
 
     & label {
       // margin: 0 auto;
-      width: 500px;
+      // width: 500px;
+
       & span {
         font-family: "Open Sans";
         font-size: 18px;
@@ -44,11 +52,11 @@
 
     &_label {
       row-gap: 0.5vh;
-      align-items: center;
+      // align-items: center;
 
       & input,
       & select {
-        width: 50%;
+    
         height: 28px;
         border-radius: 10px;
         text-align: center;
