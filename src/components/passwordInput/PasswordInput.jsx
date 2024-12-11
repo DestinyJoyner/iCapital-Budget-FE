@@ -16,6 +16,9 @@ const [showPassword, setShowPassword] = useState(false)
               id={password}
               value={stateVar["password"]}
               onChange={(e) => handleFormTextInput(e, stateVar, setFunction)}
+               //   regex pattern to check input value for requirements
+               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+               title="Must contain at least 8+ characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"
             />
             <button className="password_show"
             type="button"
@@ -36,11 +39,14 @@ const [showPassword, setShowPassword] = useState(false)
               id={confirmPassword}
               value={stateVar[confirmPassword]}
               onChange={(e) => handleFormTextInput(e, stateVar, setFunction)}
+            //   regex pattern to check input value for requirements
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+  title="Must contain at least 8+ characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"
             />
             <span>Confirm Password</span>
           </label>
           <span className="password_match">
-            {passwordMatch ? <span><FaCheckCircle color={"green"} /> Passwords Match  </span>: <span> <FaCircleXmark color={"red"} /> Passwords don't match </span>}
+            {passwordMatch ? <span><FaCheckCircle color={"green"} /> Passwords Match  </span>: <span> <FaCircleXmark color={"red"} /> Password Requirements Not Met </span>}
           </span>
         </>
     )

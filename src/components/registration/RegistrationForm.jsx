@@ -23,6 +23,13 @@ export default function RegistrationForm() {
   const [registrationError, setRegistrationError] = useState(null);
   const [passwordMatch, setPasswordMatch] = useState(false);
 
+  // function for pattern match for password requirements
+  function isValidPasswordRegex(password) {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  }
+
   function handleFormInput(e) {
     const value = e.target.value;
     const id = e.target.id;
@@ -33,6 +40,7 @@ export default function RegistrationForm() {
     e.preventDefault();
     // trigger loading state
     setLoading(true);
+    setRegistrationError(null);
     axios
       .post(`${API}/auth/register`, {
         login: registerForm,
@@ -50,7 +58,7 @@ export default function RegistrationForm() {
           is_verified,
         });
         localStorage.setItem("icapital_user_email", email);
-        localStorage.setItem("icapital_user_first_name", first_name)
+        localStorage.setItem("icapital_user_first_name", first_name);
 
         setTimeout(() => {
           navigate("/verification");
@@ -76,7 +84,13 @@ export default function RegistrationForm() {
   useEffect(() => {
     const password1 = registerForm["password"];
     const password2 = registerForm["confirm_password"];
-    if (password1 && password2) {
+    const password1Valid = isValidPasswordRegex(password1);
+    const password2Valid = isValidPasswordRegex(password2);
+
+    const validPassword1 = password1 && password1Valid;
+    const validPassword2 = password2 && password2Valid;
+
+    if (validPassword1 && validPassword2) {
       if (password1 === password2) {
         setPasswordMatch(true);
       } else {
@@ -123,11 +137,13 @@ export default function RegistrationForm() {
         setPasswordMatch={setPasswordMatch}
       />
 
-      {passwordMatch && (
-        <input type="submit" value="Register" disabled={loading} />
-      )}
+      {passwordMatch &&
+        (loading ? (
+          <Loading />
+        ) : (
+          <input type="submit" value="Register" disabled={loading} />
+        ))}
 
-      {loading && <Loading />}
       {registrationError && (
         <span className="registration_form_error">{registrationError}</span>
       )}

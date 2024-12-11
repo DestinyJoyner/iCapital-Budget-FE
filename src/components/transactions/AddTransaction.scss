@@ -1,17 +1,41 @@
 .add_transaction {
   row-gap: 2vh;
+  overflow-x: hidden;
 
+  &_success {
+    width: fit-content;
+    align-self: center;
+  }
+  // align-items:center;
   &_form {
     display: grid;
     row-gap: 2.5vh;
+    width: fit-content;
+
+    &_submitButton {
+      // border:1px solid red;
+      width: fit-content;
+      justify-self: center;
+      row-gap: 0.5vh;
+      // display:flex;
+      &_failed {
+        display: flex;
+        align-items: center;
+        column-gap: 0.5vw;
+        font-size: 12px;
+      }
+    }
 
     & input[type="submit"] {
       height: 45px;
       font-size: 20px;
       padding: 0 20px;
+      justify-self: center;
     }
 
     & label {
+      // margin: 0 auto;
+      width: 500px;
       & span {
         font-family: "Open Sans";
         font-size: 18px;
@@ -20,10 +44,11 @@
 
     &_label {
       row-gap: 0.5vh;
+      align-items: center;
 
       & input,
       & select {
-        width: 60%;
+        width: 50%;
         height: 28px;
         border-radius: 10px;
         text-align: center;
@@ -33,8 +58,8 @@
 
     &_radioButtons {
       display: flex;
-      width: 100%;
-      column-gap: 5vw;
+      width: 60%;
+      column-gap: 3vw;
 
       & label {
         display: flex;
@@ -46,6 +71,16 @@
             cursor: pointer;
           }
         }
+      }
+    }
+
+    .loading {
+      height: 40px;
+      & h2 {
+        font-size: 14px;
+      }
+      & span {
+        height: 15px;
       }
     }
   }

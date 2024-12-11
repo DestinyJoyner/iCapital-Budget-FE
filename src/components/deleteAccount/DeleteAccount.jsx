@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useAuthProvider } from "../../providers/AuthProvider.jsx";
 import { logOutUser } from "../../utils/authFunctions.js";
 import { IoWarning } from "react-icons/io5";
@@ -7,7 +7,7 @@ import { FaWindowClose } from "react-icons/fa";
 import "./DeleteAccount.scss";
 
 export default function DeleteAccount() {
-    const {API, axios, setUserAuth} = useAuthProvider()
+  const { API, axios, setUserAuth } = useAuthProvider();
   const [deleteModal, setDeleteModal] = useState(false);
 
   // click on div outside buttons close modal
@@ -18,13 +18,16 @@ export default function DeleteAccount() {
     }
   }
 
-//   delete account
-function handleDeleteAccount () {
-    axios.delete(`${API}/auth/user`).then(({data}) =>{
-        logOutUser(setUserAuth)
-        navigate("/auth")
-    }).catch(err => console.log("account deletion error", err))
-}
+  //   delete account
+  function handleDeleteAccount() {
+    axios
+      .delete(`${API}/auth/user`)
+      .then(({ data }) => {
+        logOutUser(setUserAuth);
+        navigate("/auth");
+      })
+      .catch((err) => console.log("account deletion error", err));
+  }
 
   return (
     <>
@@ -49,8 +52,10 @@ function handleDeleteAccount () {
           </p>
 
           <section className="delete_modal_buttons">
-            <button className="delete_modal_buttons_delete"
-            onClick={() => handleDeleteAccount()}>
+            <button
+              className="delete_modal_buttons_delete"
+              onClick={() => handleDeleteAccount()}
+            >
               Yes! Delete Account
             </button>
             <button

@@ -1,7 +1,29 @@
 .verification {
-    height: 100vh;
+  height: 100vh;
+
+  &_emailCheck,
+  &_error {
+    margin: 2vh auto;
+  }
+  &_emailCheck {
+    width: fit-content;
+    row-gap: 2vh;
     & h2 {
-        width: fit-content;
-        margin: 2vh auto;
+      width: fit-content;
     }
+    &_note {
+      font-style: italic;
+      font-size: 12px;
+    }
+  }
+
+  &_error {
+    width: fit-content;
+    row-gap: 2vh;
+    & span,
+    & button {
+      font-family: "Open Sans";
+      font-size: 16px;
+    }
+  }
 }

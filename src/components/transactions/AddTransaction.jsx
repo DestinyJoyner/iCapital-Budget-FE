@@ -4,6 +4,7 @@ import Loading from "../loading/Loading.jsx";
 import { transactionCategories } from "../../utils/transactionCategories.js";
 import { handleFormTextInput } from "../../utils/authFormFunctions.js";
 import { v4 as uuidv4 } from "uuid";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 import "./AddTransaction.scss";
 
@@ -24,7 +25,7 @@ export default function AddTransaction({
   const [categories, setCategories] = useState(expense);
   const [loading, setLoading] = useState(false);
   //   addTransaction error state
-  const [transactionMessage, setTransactionMessage] = useState(null);
+  const [transactionMessage, setTransactionMessage] = useState(false);
 
   // handle radio button transaction type
   function handleRadioButtons(e) {
@@ -44,7 +45,7 @@ export default function AddTransaction({
   function handleAddTransaction(e) {
     e.preventDefault();
     setLoading(true);
-    setTransactionMessage(null);
+    setTransactionMessage(false);
     const authToken = localStorage.getItem("token");
     // axios.post(url, data, config)
     axios
@@ -66,18 +67,17 @@ export default function AddTransaction({
           transaction_type: "expense",
           transaction_date: todaysDate,
         });
+        setCategories(expense)
 
         // loading stage for updating transactions
         setTimeout(() => {
           setLoading(false);
-          setTransactionMessage("Transaction added!");
+          setTransactionMessage(true);
         }, 500);
       })
       .catch((err) => {
         if (err.response) {
-          setTransactionMessage(
-            err.response.data.errors[0].msg || "Failed to add transaction."
-          );
+          setTransactionMessage("Failed to add transaction.");
         }
         console.log(err);
         setLoading(false);
@@ -86,7 +86,7 @@ export default function AddTransaction({
 
   return (
     <div className="add_transaction app-card flex-column ">
-      <h2>Add a transaction</h2>
+      <h2>Add a Transaction</h2>
 
       <form
         className="add_transaction_form"
@@ -145,7 +145,7 @@ export default function AddTransaction({
             id="category"
             value={transactionForm["category"]}
             onChange={(event) => handleDropdown(event)}
-            required
+            // required
           >
             <option value="">Select Category</option>
             {categories.map(({ id, category_name }) => (
@@ -169,10 +169,23 @@ export default function AddTransaction({
           />
         </label>
 
-        <input type="submit" value="Add Transaction" disabled={loading} />
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="add_transaction_form_submitButton flex-column-center">
+            <input type="submit" value="Add Transaction" disabled={loading} />{" "}
+            {transactionMessage === true ? (
+              <FaCheckCircle color={"green"} />
+            ) : typeof transactionMessage === "string" ? (
+              <span className="add_transaction_form_submitButton_failed subtext-font">
+                <FaTimesCircle color={"red"} />
+                {transactionMessage}
+              </span>
+            ) : null}
+          </div>
+        )}
       </form>
-      {loading && <Loading />}
-      {transactionMessage && <span>{transactionMessage}</span>}
+
     </div>
   );
 }

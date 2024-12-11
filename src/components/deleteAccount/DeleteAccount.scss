@@ -1,27 +1,25 @@
 .delete {
-    &_modal button, &_account {
-       
-        font-family: "Open Sans";
-        width: fit-content;
-        border-radius: 10px;
-        padding: 5px 10px;
-        &:hover {
-          
-          cursor: pointer;
-        }
-      }
-
-    &_account {
-        background-color: var(--error-red);
-        color: white;
-        &:hover {
-            background-color: #cc0000;
-            // background-color: darken(#ff4444, 15%);  
-            transform: scale(1.05);
-        }
+  &_modal button,
+  &_account {
+    font-family: "Open Sans";
+    width: fit-content;
+    border-radius: 10px;
+    padding: 5px 10px;
+    &:hover {
+      cursor: pointer;
     }
+  }
+
+  &_account {
+    background-color: var(--error-red);
+    color: white;
+    &:hover {
+      background-color: #cc0000;
+      // background-color: darken(#ff4444, 15%);
+      transform: scale(1.05);
+    }
+  }
   &_modal {
-   
     position: fixed;
     top: 0;
     left: 0;
@@ -61,11 +59,12 @@
       & button {
         height: 50px;
         font-size: 18px;
+        width: fit-content;
         &:hover {
-            transform: scale(1.2);
+          transform: scale(1.2);
         }
       }
-     
+
       &_cancel {
         background-color: white;
         color: var(--icapital-blue);

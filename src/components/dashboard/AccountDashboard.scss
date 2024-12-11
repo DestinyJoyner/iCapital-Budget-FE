@@ -1,11 +1,12 @@
 .dashboard {
   display: grid;
-  width:100%;
+  width: 100%;
   // grid-template-columns: repeat(2,1fr);
   grid-template-columns: 45% 55%;
+  // grid-template-rows: 22vh 48vh 40vh;
   row-gap: 2vh;
   align-items: center;
-  padding-bottom: 4vh;
+  padding-bottom: 6vh;
 
   &_header {
     grid-column: span 2;
@@ -16,9 +17,35 @@
     background-size: 100% auto;
     color: white;
 
+    & h2 {
+      font-size: 24px;
+      row-gap: 1vh;
+    }
+
+    &_message {
+      font-style: italic;
+      font-size: 13px;
+      display: flex;
+      align-items:center;
+      column-gap: .3vw;
+      & svg {
+        color: var(--icapital-blue);
+      }
+    
+
+    }
+
     &_buttons {
+      align-self:flex-start;
       display: flex;
       column-gap: 4vw;
+      grid-column: 1;
+      grid-row: 2;
+
+      & .logoutButton, .delete_account {
+        height: 42px;
+        width: 125px;
+      }
     }
 
     &_left {
@@ -28,13 +55,24 @@
       display: grid;
       row-gap: 1.5vh;
       align-items: center;
+      height: 90%;
+
+      // edits
+      grid-template-columns: 52% 48%;
 
       &_summary {
+        grid-column: 2;
+        grid-row: 1/3;
+
         font-size: 18px;
 
         list-style: none;
         & li {
-          margin-bottom: 0.6vh;
+          margin-bottom: 1vh;
+          font-size: 22px;
+        }
+        & li:first-of-type {
+          font-size: 28px;
         }
       }
     }
@@ -45,24 +83,29 @@
     grid-row: 2;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    height: 55vh;
+    height: 50vh;
     overflow: hidden;
     column-gap: 2vw;
     padding: 0 1vw;
-    
-    & > * {
+
+    & > *{
       padding: 1vw;
       max-height: 100%;
       grid-row: 1;
       overflow-y: auto;
+       // hover effect for user indication of whats selected??
+    &:hover {
+      border: 1px solid rgba(0, 119, 170, 0.2);  
+    }
     }
 
+   
     .add_transaction {
-      grid-column: 3;
+      grid-column: 2;
     }
 
     .user_financial_report {
-      grid-column: 2;
+      grid-column: 3;
     }
 
     .transactions {
@@ -70,14 +113,23 @@
     }
   }
 
+  .line_graph, .projectedEarnings {
+    // padding: 1vw;
+    max-height: 100%;
+    // grid-row: 1;
+    overflow-y: auto;
+     // hover effect for user indication of whats selected??
+  &:hover {
+    border: 1px solid rgba(0, 119, 170, 0.2);  
+  }
+  }
   .line_graph {
     grid-column: 1;
-    grid-row:3;
+    grid-row: 3;
   }
 
   .stockData {
     grid-column: 2;
-    grid-row:3;
-    
+    grid-row: 3;
   }
 }
