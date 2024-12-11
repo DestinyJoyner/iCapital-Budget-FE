@@ -19,17 +19,32 @@
 
     & h2 {
       font-size: 24px;
+      row-gap: 1vh;
+    }
+
+    &_message {
+      font-style: italic;
+      font-size: 13px;
+      display: flex;
+      align-items:center;
+      column-gap: .3vw;
+      & svg {
+        color: var(--icapital-blue);
+      }
+    
+
     }
 
     &_buttons {
+      align-self:flex-start;
       display: flex;
       column-gap: 4vw;
       grid-column: 1;
       grid-row: 2;
 
-      & .logOutButton, .delete_account {
+      & .logoutButton, .delete_account {
         height: 42px;
-        width: 130px;
+        width: 125px;
       }
     }
 

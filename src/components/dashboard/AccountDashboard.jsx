@@ -10,9 +10,7 @@ import DeleteAccount from "../deleteAccount/DeleteAccount.jsx";
 import Transactions from "../transactions/Transactions.jsx";
 import UserFinancialReport from "../financial/UserFinancialReport.jsx";
 import ProjectedEarnings from "../projectedEarnings/ProjectedEarnings.jsx";
-// import StockData from "../polygon-io/StockData.jsx"
-// import {stockTickers} from "../../utils/stockTickers.js"
-// import { v4 as uuidv4 } from "uuid";
+import {FaChartLine} from "react-icons/fa"
 import "./AccountDashboard.scss";
 
 export default function AccountDashboard() {
@@ -33,7 +31,10 @@ export default function AccountDashboard() {
     <div className="dashboard">
       <section className="dashboard_header">
         <div className="dashboard_header_left">
-          <h2 className="header-font">Welcome, {userAuth.first_name}!</h2>
+          <h2 className="header-font flex-column">Welcome, {userAuth.first_name}!
+          <span className="dashboard_header_message subtext-font"><FaChartLine size={"1.2em"}/>Simplifying Finance, Maximizing Growth</span>
+          </h2>
+          
           <span className="dashboard_header_buttons">
             <LogOutButton />
             <DeleteAccount />
