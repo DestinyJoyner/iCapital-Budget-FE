@@ -45,6 +45,9 @@
     border-radius: 10px;
 }
 
+.hide {
+    display:none;
+}
 // submit buttons
 input[type="submit"], .logoutButton, .landingPage_enter {
     background-color: var(--icapital-blue);
