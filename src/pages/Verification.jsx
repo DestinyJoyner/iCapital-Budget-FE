@@ -40,7 +40,12 @@ export default function Verification() {
     <div className="verification ">
       <AppHeader />
       {!verificationToken ? (
-        <h2>Check Email for Verification Link</h2>
+        <section className="verification_emailCheck flex-column-center">
+          <h2>Check Email for Verification Link</h2>
+          <span className="subtext-font">Please check your inbox for the verification email. If you don't see it, be sure to check your spam or junk folder. </span>
+          <span className="verification_emailCheck_note subtext-font">This verification step is necessary to ensure the security of your account and to confirm your email address.</span>
+        </section>
+        
       ) : (
         <Loading />
       )}

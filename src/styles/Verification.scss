@@ -1,7 +1,17 @@
 .verification {
     height: 100vh;
-    & h2 {
-        width: fit-content;
+
+    &_emailCheck {
         margin: 2vh auto;
+        width: fit-content;;
+        row-gap: 2vh;
+        & h2 {
+            width: fit-content;
+        }
+        &_note {
+            font-style: italic;
+            font-size: 12px;
+        }
     }
+ 
 }
