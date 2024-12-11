@@ -16,7 +16,7 @@ A React-based frontend application for personal budget management and investment
 ### Data Visualization
 - **Chart.js**: JavaScript charting library
 - **React Chart.js 2**: React wrapper for Chart.js
-- **Polygon.io API**: Real-time and historical financial data
+- **Financial Modeling Prep API**: Real-time and historical financial data
 
 ### State Management & Data Fetching
 - **React Context**: Application state management
@@ -54,26 +54,34 @@ A React-based frontend application for personal budget management and investment
 - Financial reports with detailed insights
 - Group by category line graph for visualizing spending trends
 
-<!-- ### Investment Tracking
-- Integration with Polygon.io API for real-time stock data
-- Weekly stock price visualization
-- Volume trading analysis -->
-### Investment Returns Calculator
+### Investment Returns Calculator & Portfolio Tracking
 The Investment Returns Calculator helps users estimate potential stock investments based on their savings. Using real-time data from Financial Modeling Prep API, users can:
 
 - View current stock prices and earnings per share (EPS) for popular companies
-- Calculate how many shares they can buy with different percentages of their savings:
+- Calculate investment possibilities based on their savings:
   - Conservative (15% of savings)
   - Moderate (30% of savings)
   - Aggressive (50% of savings)
-- See projected annual and monthly earnings based on current EPS
-- Get recommendations if they can't afford shares
-- View company financial metrics in real-time
+- Track portfolio performance with real-time market data:
+  - Number of shares possible based on available balance
+  - Projected annual and monthly earnings using current EPS
+  - Portfolio diversification recommendations
+  - Historical performance tracking
+- Access market analysis tools:
+  - Real-time stock price updates
+  - Company financial metrics
+  - Market trend insights
+  - Investment strategy recommendations
+- Get smart recommendations:
+  - Alternative investment options if share prices exceed budget
+  - Portfolio rebalancing suggestions
+  - Risk assessment based on investment strategy
 
 #### Data Source
 - Stock data provided by Financial Modeling Prep API
 - Endpoints used:
   - `/api/v3/quote/${ticker}` for real-time stock price and EPS
+   - `/api/v3/historical-price-full/${ticker}`: Retrieve historical stock prices.
   - Data includes: current price, EPS, company name, and other metrics
 
 #### Investment Calculations
