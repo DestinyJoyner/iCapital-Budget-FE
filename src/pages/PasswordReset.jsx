@@ -59,14 +59,16 @@ export default function PasswordReset() {
       })
       .then(({ data }) => {
         // console.log("password reset res",data)
-        const { token, email } = data;
+        const { token, email, first_name } = data;
         localStorage.setItem("token", token);
         localStorage.setItem("icapital_user_email", email);
+        localStorage.setItem("icapital_user_first_name", first_name);
         // update user auth as its checked in protected route for dashboard
         setUserAuth({
           ...userAuth,
           authToken: token,
           email: email,
+          first_name: first_name,
         });
 
         // delay to wait for state update
