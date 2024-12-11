@@ -9,6 +9,11 @@
     text-align: center;
     margin: 1vh 0;
     grid-column: span 2;
+
+    & p {
+        font-style: italic;
+        margin: 1vh 0;
+    }
   }
 
   &_content {
@@ -40,16 +45,20 @@
       & p {
         font-family: "Open Sans";
         font-size: 14px;
+    
+            grid-column: 2;
+            grid-row:2;
+        
       }
       &_features {
         display: grid;
-        grid-template-columns: 20% 80%;
+        grid-template-columns: 10% 90%;
         align-items: center;
         width: 100%;
 
         & svg {
           grid-column: 1;
-          grid-row: 1/3;
+          grid-row: 1;
           justify-self: center;
           height: 1.2em;
           width: 1.2em;
@@ -60,9 +69,10 @@
     &_right {
       & > * {
         display: grid;
-        grid-template-columns: 20% 80%;
+        grid-template-columns: 10% 90%;
         align-items: center;
         width: 100%;
+        row-gap: 1vh;
       }
       &_text {
         grid-column: 2;
@@ -75,10 +85,11 @@
       p {
         font-family: "Open Sans";
         font-size: 14px;
+        margin: .4vh 0;
       }
       & svg {
         grid-column: 1;
-        grid-row: 1/3;
+        grid-row: 1;
         height: 1.2em;
         width: 1.2em;
         justify-self: center;
@@ -86,13 +97,13 @@
 
       &_about {
         display: grid;
-        row-gap: 1vh;
+        // row-gap: 1vh;
       }
       &_tech {
         .landingPage_content_right_text {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          row-gap: 1vh;
+          grid-template-columns: repeat(3, 1fr);
+        //   row-gap: 1vh;
           & h3 {
             grid-column: span 2;
           }
