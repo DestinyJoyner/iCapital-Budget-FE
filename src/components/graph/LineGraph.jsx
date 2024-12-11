@@ -47,7 +47,7 @@ export default function LineGraph() {
     plugins: {
       legend: {
         position: "top",
-        onClick: null,  // Disable legend click behavior
+        onClick: null,  // disable legend click 
         labels: {
           font: {
             family: "Open Sans",
