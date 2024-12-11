@@ -67,6 +67,7 @@ export default function AddTransaction({
           transaction_type: "expense",
           transaction_date: todaysDate,
         });
+        setCategories(expense)
 
         // loading stage for updating transactions
         setTimeout(() => {
@@ -85,7 +86,7 @@ export default function AddTransaction({
 
   return (
     <div className="add_transaction app-card flex-column ">
-      <h2>Add a transaction</h2>
+      <h2>Add a Transaction</h2>
 
       <form
         className="add_transaction_form"
