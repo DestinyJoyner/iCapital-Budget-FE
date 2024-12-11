@@ -4,4 +4,16 @@
     font-size: 16px;
    }
 
+   .loading {
+      width: fit-content;
+      &_content {
+         & h2 {
+            font-size: 14px;
+         }
+         & span {
+            height: 10px;
+         }
+      }
+   }
+
 }

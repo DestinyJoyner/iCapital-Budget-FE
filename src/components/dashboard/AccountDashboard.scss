@@ -27,7 +27,7 @@
       grid-column: 1;
       grid-row: 2;
 
-      & button {
+      & .logOutButton, .delete_account {
         height: 42px;
         width: 130px;
       }
