@@ -1,36 +1,29 @@
 .verification {
-    height: 100vh;
+  height: 100vh;
 
-    &_emailCheck, &_error {
-        margin: 2vh auto;
+  &_emailCheck,
+  &_error {
+    margin: 2vh auto;
+  }
+  &_emailCheck {
+    width: fit-content;
+    row-gap: 2vh;
+    & h2 {
+      width: fit-content;
     }
-    &_emailCheck {
-        
-        width: fit-content;;
-        row-gap: 2vh;
-        & h2 {
-            width: fit-content;
-        }
-        &_note {
-            font-style: italic;
-            font-size: 12px;
-        }
+    &_note {
+      font-style: italic;
+      font-size: 12px;
     }
- 
+  }
 
-    &_error {
-        width: fit-content;
-        row-gap: 2vh;
-        & span, & button {
-            font-family: "Open Sans";
-            font-size: 16px;
-        }
-
-        // & a {
-        //     text-decoration: none;
-        //     font-weight: 600;
-        //     font-size:18px;
-        // }
-
+  &_error {
+    width: fit-content;
+    row-gap: 2vh;
+    & span,
+    & button {
+      font-family: "Open Sans";
+      font-size: 16px;
     }
+  }
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuthProvider } from "../providers/AuthProvider.jsx";
 import AppHeader from "../components/appHeader/AppHeader.jsx";
 import Loading from "../components/loading/Loading.jsx";

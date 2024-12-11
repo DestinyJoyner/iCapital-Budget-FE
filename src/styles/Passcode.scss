@@ -21,4 +21,16 @@ input {
   }
 
     }
+
+    &_emailCheck{
+        margin: 2vh auto;
+        row-gap: 1vh;
+        width:70%;
+        text-align:center;
+
+        &_note{
+            font-style: italic;
+            font-size: 12px;
+        }
+    }
 }
