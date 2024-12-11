@@ -46,7 +46,7 @@ const [showPassword, setShowPassword] = useState(false)
             <span>Confirm Password</span>
           </label>
           <span className="password_match">
-            {passwordMatch ? <span><FaCheckCircle color={"green"} /> Passwords Match  </span>: <span> <FaCircleXmark color={"red"} /> Invalid Password Format </span>}
+            {passwordMatch ? <span><FaCheckCircle color={"green"} /> Passwords Match  </span>: <span> <FaCircleXmark color={"red"} /> Password Requirements Not Met </span>}
           </span>
         </>
     )

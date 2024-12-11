@@ -3,6 +3,13 @@
   grid-template-columns: 0.6fr 2fr 1.3fr;
   align-items: center;
 
+  // add padding to last card item to prevent cut off
+  &:last-child {
+     padding-bottom: 3vh;
+     margin-bottom: 1.5vh;
+  }
+ 
+
   &_icon {
     & svg {
       width: 1.5em;
