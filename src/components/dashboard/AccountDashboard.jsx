@@ -39,7 +39,7 @@ export default function AccountDashboard() {
             <DeleteAccount />
           </span>
           <div className="dashboard_header_left_summary subtext-font">
-            <li>Disposable Income: ${disposable_income || 0}</li>
+            <li>Balance: ${disposable_income || 0}</li>
             <li>Total Income: ${total_income || 0}</li>
             <li>Total Expenses: ${total_expenses || 0}</li>
           </div>
