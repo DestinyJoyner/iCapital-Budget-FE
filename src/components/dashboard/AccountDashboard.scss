@@ -3,9 +3,10 @@
   width: 100%;
   // grid-template-columns: repeat(2,1fr);
   grid-template-columns: 45% 55%;
+  // grid-template-rows: 22vh 48vh 40vh;
   row-gap: 2vh;
   align-items: center;
-  padding-bottom: 4vh;
+  padding-bottom: 6vh;
 
   &_header {
     grid-column: span 2;
@@ -42,7 +43,7 @@
       height: 90%;
 
       // edits
-      grid-template-columns: 55% 45%;
+      grid-template-columns: 52% 48%;
 
       &_summary {
         grid-column: 2;
@@ -56,7 +57,7 @@
           font-size: 22px;
         }
         & li:first-of-type {
-          font-size: 32px;
+          font-size: 28px;
         }
       }
     }
@@ -67,18 +68,23 @@
     grid-row: 2;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    height: 55vh;
+    // height: 52vh;
     overflow: hidden;
     column-gap: 2vw;
     padding: 0 1vw;
 
-    & > * {
+    & > *{
       padding: 1vw;
       max-height: 100%;
       grid-row: 1;
       overflow-y: auto;
+       // hover effect for user indication of whats selected??
+    &:hover {
+      border: 1px solid rgba(0, 119, 170, 0.2);  
+    }
     }
 
+   
     .add_transaction {
       grid-column: 3;
     }
@@ -92,6 +98,16 @@
     }
   }
 
+  .line_graph, .projectedEarnings {
+    // padding: 1vw;
+    max-height: 100%;
+    // grid-row: 1;
+    overflow-y: auto;
+     // hover effect for user indication of whats selected??
+  &:hover {
+    border: 1px solid rgba(0, 119, 170, 0.2);  
+  }
+  }
   .line_graph {
     grid-column: 1;
     grid-row: 3;

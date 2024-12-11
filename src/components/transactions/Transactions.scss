@@ -1,4 +1,15 @@
 .transactions {
   display: grid;
   row-gap: 1vh;
+  height: fit-content;
+
+  &_none {
+    margin: 1vh 0;
+    width: 90%;
+    justify-self:center;
+    text-align:center;
+    & span {
+      font-size: 15px;
+    }
+  }
 }
