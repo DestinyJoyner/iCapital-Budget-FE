@@ -1,8 +1,12 @@
 .authPage {
   height: 100vh;
   display: grid;
-  grid-template-rows: 28vh 60vh;
+  grid-template-rows: 28vh 4vh 60vh;
 
+  &_disclaimer {
+    justify-self:center;
+    font-size: 12px;
+  }
   &_forms {
     max-height: 60vh;
     display: flex;
