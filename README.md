@@ -3,6 +3,9 @@
 ## Overview
 A React-based frontend application for personal budget management and investment tracking. This application interfaces with the [Budget & Investment Advisory API](https://github.com/DestinyJoyner/iCapital-Budget-BE/).
 
+## Demo
+[Watch the Demo](https://vimeo.com/1056975489/7a873cff2c?share=copy)
+
 ## Live Links
 - Deployed Site: [https://djoyner-icapital-budget-app.netlify.app/]
 - Backend API: [https://icapital-budget-be.onrender.com/](https://icapital-budget-be.onrender.com/)
